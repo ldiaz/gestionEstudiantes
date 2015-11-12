@@ -16,13 +16,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.laboratorioprueba.laboratorio1.spring_mvc.seguridad.modelo.RolUsuario;
-import com.laboratorioprueba.laboratorio1.spring_mvc.seguridad.modelo.Usuario;
-import com.laboratorioprueba.laboratorio1.spring_mvc.seguridad.repositorio.RepositorioUsuario;
+import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
+import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
+import edu.ucc.gestionestudiantes.seguridad.repositorio.RepositorioUsuario;
 
 @Service
 @Qualifier("customUserDetailsService")
-public class ServicioUsuario implements UserDetailsService, InterfazServicioUsuario {
+public class ServicioUsuario implements UserDetailsService, InterfazServicioUsuario{
     @Autowired
     private RepositorioUsuario userRepository;
 

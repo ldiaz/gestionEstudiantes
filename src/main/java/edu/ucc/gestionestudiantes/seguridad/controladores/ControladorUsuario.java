@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.laboratorioprueba.laboratorio1.spring_mvc.seguridad.modelo.Usuario;
-import com.laboratorioprueba.laboratorio1.spring_mvc.seguridad.service.InterfazServicioUsuario;
+import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
+import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 
 @Controller
 public class ControladorUsuario {

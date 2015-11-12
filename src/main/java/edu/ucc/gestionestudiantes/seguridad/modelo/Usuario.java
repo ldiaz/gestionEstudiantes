@@ -1,7 +1,7 @@
 package edu.ucc.gestionestudiantes.seguridad.modelo;
 import javax.persistence.*;
 
-import com.laboratorioprueba.laboratorio1.spring_mvc.seguridad.utils.PasswordCrypto;
+import edu.ucc.gestionestudiantes.seguridad.utils.PasswordCrypto;
 
 import java.util.HashSet;
 import java.util.Set;
