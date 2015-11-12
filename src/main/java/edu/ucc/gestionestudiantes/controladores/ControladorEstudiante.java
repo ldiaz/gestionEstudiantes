@@ -25,7 +25,7 @@ public class ControladorEstudiante {
 		System.out.println("Obteniendo el formulario");
 		modelo.addAttribute("estudiante", new Estudiante());
 		
-		return "formularioEstudiante";
+		return "formularioEstudiante"; 
 	}
 	
 
