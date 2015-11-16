@@ -21,13 +21,14 @@
             <div th:fragment="content"><label> User Name : <input type="text" name="username"/> </label></div>
            	<p></p>
            	<div th:fragment="content"><label> Password: <input type="password" name="password"/> </label></div>
-            <p></p>            
+            <p></p>  
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 
             <div><input type="submit" value="Sign In"/></div>
             <p></p>
             <p></p>
             <p></p>
-			<a th:href="/estudiantes/nuevo">Registrarme ahora!</a>
+<!-- 			<a th:href="estudiantes/nuevo">Registrarme ahora!</a> -->
+			
         </form>
     </body>
 </html>

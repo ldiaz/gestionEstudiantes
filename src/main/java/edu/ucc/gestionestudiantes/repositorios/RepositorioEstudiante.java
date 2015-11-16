@@ -9,7 +9,7 @@ import edu.ucc.gestionestudiantes.domain.Estudiante;
 
 public interface RepositorioEstudiante extends CrudRepository<Estudiante, Integer>{
 	
-	//buscar estudiantes menores de cierta edad
+	//buscar programa por el nombre
 	public List<Estudiante> findByFechaNacimientoAfter(Date fechaConsulta);
 
 }

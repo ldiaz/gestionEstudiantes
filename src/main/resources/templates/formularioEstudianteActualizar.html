@@ -9,26 +9,26 @@
 	<div class="container">
 	<form th:action="@{/estudiantes/{idEstudiante}/actualizar(idEstudiante=${estudiante.numeroIdentificacion})}" th:object="${estudiante}" method="post">
 		<div class="form-group">
-		    <label for="nombre">Nombre estudiante:</label>
+		    <label for="nombre">Nombre Estudiante:</label>
 			<input type="text" name="nombre" th:field="*{nombre}" value="" />
 		</div>
 		
 		<div class="form-group">
-		    <label for="apellido">Apellido estudiante:</label>
+		    <label for="apellido">Apellido Estudiante:</label>
 			<input class="form-control" type="text" name="apellido" th:field="*{apellido}" value="" />
 		</div>
 		
 		<div class="form-group">
-		    <label for="tipoDocumentoIdentificacion">Tipo de documento:</label>
+		    <label for="tipoDocumentoIdentificacion">Tipo de Documento:</label>
 			<select class="form-control" name="tipoDocumentoIdentificacion" th:field="*{tipoDocumentoIdentificacion}">
 				<option value="cc">Cédula</option>
 				<option value="ti">Tarjeta de Indentidad</option>
-				<option value="nd">Otro</option>
+				<option value="nd">Cedula Extrangeria</option>
 			</select>
 		</div>
 		
 		<div class="form-group">
-		    <label for="numeroIdentificacion">Numero de identificación:</label>
+		    <label for="numeroIdentificacion">Numero de Identificación:</label>
 			<input class="form-control" type="text" name="numeroIdentificacion" value="" th:field="*{numeroIdentificacion}"/>
 		</div>
 		<input class="btn btn-default" type="submit" value="Enviar" />
