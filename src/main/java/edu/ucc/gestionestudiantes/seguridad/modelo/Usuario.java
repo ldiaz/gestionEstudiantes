@@ -28,6 +28,8 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private Set<RolUsuario> roles;
+    
+    
 
     public static Usuario createUsuario(String username, String email, String password) {
         Usuario Usuario = new Usuario();
@@ -41,11 +43,11 @@ public class Usuario {
         }
 
         //crea un usuario nuevo con privilegio basicos de usuario
-        Usuario.roles.add(
-                new RolUsuario(
-                        RolEnum.USER.toString(),
-                        Usuario
-                ));
+//        Usuario.roles.add(
+//                new RolUsuario(
+//                        RolEnum.USER.toString(),
+//                        Usuario
+//                ));
 
         return Usuario;
     }

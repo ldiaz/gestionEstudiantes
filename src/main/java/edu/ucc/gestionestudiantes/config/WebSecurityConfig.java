@@ -24,7 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/estudiantes/**").authenticated();
+        http.authorizeRequests().antMatchers("/estudiantes").authenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/editar").authenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/actualizar").authenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").authenticated();
 
         http.formLogin()
                 .defaultSuccessUrl("/estudiantes")

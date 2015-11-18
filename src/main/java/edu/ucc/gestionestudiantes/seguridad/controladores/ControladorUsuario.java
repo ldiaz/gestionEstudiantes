@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 
@@ -32,6 +33,9 @@ public class ControladorUsuario {
 		
 		Usuario u = Usuario.createUsuario(datosUsuario.getUsername(), datosUsuario.getEmail(), datosUsuario.getPassword());
 		
+		RolUsuario r1 = new RolUsuario();
+		r1.setNombreRol("Admin");
+		u.getRoles().add(r1);
 		servicioUsuario.guardarUsuario(u);
 		
 		modelo.addAttribute("usuario", u);
