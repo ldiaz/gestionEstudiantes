@@ -37,6 +37,7 @@ public class ControladorUsuario {
 		r1.setNombreRol("Admin");
 		u.getRoles().add(r1);
 		servicioUsuario.guardarUsuario(u);
+		servicioUsuario.guardarRolUsuario(r1);
 		
 		modelo.addAttribute("usuario", u);
 		

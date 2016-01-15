@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
+import edu.ucc.gestionestudiantes.seguridad.repositorio.RepositorioRolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.repositorio.RepositorioUsuario;
 
 @Service
@@ -25,6 +26,9 @@ import edu.ucc.gestionestudiantes.seguridad.repositorio.RepositorioUsuario;
 public class ServicioUsuario implements UserDetailsService, InterfazServicioUsuario{
     @Autowired
     private RepositorioUsuario userRepository;
+    
+    @Autowired
+    private RepositorioRolUsuario rolRepository;
 
     @Transactional(readOnly=true)
     @Override
@@ -60,6 +64,13 @@ public class ServicioUsuario implements UserDetailsService, InterfazServicioUsua
 		
 		return userRepository.save(nuevoUsuario);
 	}
+	
+	@Override
+	public RolUsuario guardarRolUsuario(RolUsuario nuevoRol){
+		return rolRepository.save(nuevoRol);		
+	}
+	
+	
     
 }
 
