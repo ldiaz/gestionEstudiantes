@@ -30,14 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //    	
-    	http.authorizeRequests().antMatchers("/HomeAdministrador").authenticated();
-        http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
+//    	http.authorizeRequests().antMatchers("/HomeAdministrador").authenticated();
+//        http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
     	http.authorizeRequests().antMatchers("/estudiantes").authenticated();
         http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/editar").authenticated();
         http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/actualizar").authenticated();
         http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").authenticated();
-//        http.authorizeRequests().antMatchers("/HomeAdministrador").hasAuthority("Admin");
-//        http.authorizeRequests().antMatchers("/HomeUsuario").hasRole("admin");
+        http.authorizeRequests().antMatchers("/HomeAdministrador").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
+
         
 //        http.formLogin()
 //        .defaultSuccessUrl("/estudiantes")
@@ -53,16 +54,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           
         http.formLogin()
                 .defaultSuccessUrl("/HomeAdministrador")
+//                .defaultSuccessUrl("/HomeAdministrador")
                 .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login")
                 .permitAll();
-       
-             
-        
-        
+//        NombreRol=${Admin}
+//        NombreRol=${rol_usuario.nombre_rol}
+//        "@{/estudiantes/{idEstudiante}/editar(idEstudiante=${estudiante.numeroIdentificacion})}"
         //http.csrf().disable();
 //        http.authorizeRequests()
 //                        .antMatchers("/**").authenticated()

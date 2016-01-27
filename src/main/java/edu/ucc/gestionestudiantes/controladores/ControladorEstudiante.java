@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.ucc.gestionestudiantes.domain.Estudiante;
+import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
+import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
+import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 
 @Controller
@@ -18,6 +21,9 @@ public class ControladorEstudiante {
 	
 	@Autowired
 	private ServicioEstudiante servEstudiante;
+	
+	@Autowired
+	private InterfazServicioUsuario servicioUsuario;
 
 	@RequestMapping(value="estudiantes/nuevo", method=RequestMethod.GET)
 	public String formularioEstudiante(Model modelo){
@@ -36,6 +42,17 @@ public class ControladorEstudiante {
 		estudiante.setNombre(estudiante.getNombre());
 		
 		servEstudiante.crearEstudiante(estudiante);
+		
+		Usuario u = Usuario.createUsuario(estudiante.getEmail(), estudiante.getEmail(), estudiante.getContrasena());
+		
+		RolUsuario r1 = new RolUsuario();
+		r1.setNombreRol("Estudiante");
+		r1.setUsuario(u);
+		u.getRoles().add(r1);
+		servicioUsuario.guardarUsuario(u);
+		servicioUsuario.guardarRolUsuario(r1);
+		
+		modelo.addAttribute("usuario", u);
 
 		return "vistaEstudiante";
 	}
@@ -49,17 +66,6 @@ public class ControladorEstudiante {
 		
 		
 		return "listadoEstudiantes";
-	}
-	
-	@RequestMapping(value="HomeAdministrador", method=RequestMethod.GET)
-	public String HomeAdministrador(Model modelo){
-		
-		/*List<Estudiante> listado = servEstudiante.listarEstudiantes(1, 5);
-		
-		modelo.addAttribute("estudiantes", listado);*/
-		
-		
-		return "HomeAdmin";
 	}
 	
 	@RequestMapping(value="estudiantes/{idEstudiante}/editar", method=RequestMethod.GET)

@@ -20,17 +20,22 @@ public class Estudiante {
 	private String apellido;
 	private String tipoDocumentoIdentificacion;
 	private Date fechaNacimiento;
-	
+	private String Email;
+	private String Contrasena;
+		
 	public Estudiante(){
 		
 	}
 
-	public Estudiante(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion) {
+	public Estudiante(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String Contrasena) {
 		super();
 		this.numeroIdentificacion = numeroIdentificacion;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumentoIdentificacion = tipoDocumentoIdentificacion;
+		this.fechaNacimiento = fechaNacimiento;
+		this.Email = Email;
+		this.Contrasena = Contrasena;
 	}
 
 	public String getNombre() {
@@ -64,6 +69,22 @@ public class Estudiante {
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	public String getContrasena() {
+		return Contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		Contrasena = contrasena;
 	}
 	
 	
