@@ -9,9 +9,8 @@
     </head>
     <body th:fragment="content">
         <div class="alert alert-danger" role="alert" th:if="${param.error}">
-        	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  			<span class="sr-only">Invalid username and password.</span>            
-        </div>
+        	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="True">NOMBRE DE USUARIO O CONTRASEÑA INVALIDOS.</span>
+		</div>
         <div th:if="${param.logout}">
             You have been logged out.
         </div>

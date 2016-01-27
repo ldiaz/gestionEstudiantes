@@ -51,6 +51,17 @@ public class ControladorEstudiante {
 		return "listadoEstudiantes";
 	}
 	
+	@RequestMapping(value="HomeAdministrador", method=RequestMethod.GET)
+	public String HomeAdministrador(Model modelo){
+		
+		/*List<Estudiante> listado = servEstudiante.listarEstudiantes(1, 5);
+		
+		modelo.addAttribute("estudiantes", listado);*/
+		
+		
+		return "HomeAdmin";
+	}
+	
 	@RequestMapping(value="estudiantes/{idEstudiante}/editar", method=RequestMethod.GET)
 	public String editarEstudiante(@PathVariable Integer idEstudiante, Model modelo){
 		
