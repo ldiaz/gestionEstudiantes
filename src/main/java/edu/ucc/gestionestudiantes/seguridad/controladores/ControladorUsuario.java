@@ -1,8 +1,9 @@
 package edu.ucc.gestionestudiantes.seguridad.controladores;
 
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+
+import org.apache.catalina.security.SecurityListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.memory.UserAttribute;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,18 +11,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.ucc.gestionestudiantes.domain.Estudiante;
+import com.mysql.jdbc.Security;
+
+import edu.ucc.gestionestudiantes.config.WebSecurityConfig;
 import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
-import scala.annotation.meta.getter;
+
 
 @Controller
 public class ControladorUsuario {
 	
 	@Autowired
 	private InterfazServicioUsuario servicioUsuario;
-
+	
 	@RequestMapping(value="/admin/usuarios/nuevo", method=RequestMethod.GET)
 	public String formularioUsuario(Model modelo){
 		
@@ -50,22 +53,28 @@ public class ControladorUsuario {
 		return "seguridad/admin/detalleUsuario";
 	}
 	
-//	@RequestMapping(value="HomeAdministrador", method=RequestMethod.GET)
-//	public String HomeAdministrador(@PathVariable String NombreRol, Model modelo){
-//		
-//		if(NombreRol == "Admin"){
-//			return "HomeAdmin";
-//		}else{
-//			return "HomeUsuario";
-//		}
-//	}	
 	
 	@RequestMapping(value="HomeAdministrador", method=RequestMethod.GET)
-	public String HomeAdministrador( Model modelo){
-		
-		
-			return "HomeAdmin";
-		
+	public String HomeAdministrador(Model modelo){
+			return "HomeAdmin";		
 	}
+	
+	
+	@RequestMapping(value="HomeUsuario", method=RequestMethod.GET)
+	public String HomeUsuario(Model modelo){
+			return "HomeUsuario";
+	}
+	
+	@RequestMapping(value="Home", method=RequestMethod.GET)
+	public String Home(Model modelo){
+			return "Home";
+	}
+	
+	@RequestMapping(value="Error", method=RequestMethod.GET)
+	public String ErrorLogin(Model modelo){
+			return "Error";
+	}
+
+
 	
 }

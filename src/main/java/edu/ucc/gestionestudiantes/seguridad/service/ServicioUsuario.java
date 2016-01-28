@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.catalina.realm.SecretKeyCredentialHandler;
+import org.apache.tomcat.util.descriptor.web.SecurityRoleRef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,7 +31,8 @@ public class ServicioUsuario implements UserDetailsService, InterfazServicioUsua
     
     @Autowired
     private RepositorioRolUsuario rolRepository;
-
+    
+    
     @Transactional(readOnly=true)
     @Override
     public UserDetails loadUserByUsername(final String username)

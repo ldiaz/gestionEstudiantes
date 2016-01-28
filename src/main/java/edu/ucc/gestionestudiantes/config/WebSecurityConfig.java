@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.mysql.jdbc.Security;
 
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 
@@ -38,64 +39,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").authenticated();
         http.authorizeRequests().antMatchers("/HomeAdministrador").hasAuthority("Admin");
         http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
+        http.authorizeRequests().antMatchers("/Home").authenticated();
 
-        
-//        http.formLogin()
-//        .defaultSuccessUrl("/estudiantes")
-//        .loginPage("/HomeAdmin")
-//        .permitAll()
-//        .and()
-//        .logout()
-//        .logoutSuccessUrl("/logout")
-//        .permitAll();
-        
-//        http.csrf().disable();
-        
-          
+
         http.formLogin()
-                .defaultSuccessUrl("/HomeAdministrador")
-//                .defaultSuccessUrl("/HomeAdministrador")
+                .defaultSuccessUrl("/Home")
+                .failureUrl("/login?error")
                 .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login")
                 .permitAll();
-//        NombreRol=${Admin}
-//        NombreRol=${rol_usuario.nombre_rol}
-//        "@{/estudiantes/{idEstudiante}/editar(idEstudiante=${estudiante.numeroIdentificacion})}"
-        //http.csrf().disable();
-//        http.authorizeRequests()
-//                        .antMatchers("/**").authenticated()
-//                        .antMatchers("/shutdown").permitAll()
-//                        .and().formLogin().passwordParameter("password").usernameParameter("username")
-//                        .and().formLogin().loginPage("/login").permitAll()
-//                        .and().formLogin().loginProcessingUrl("/HomeAdmin")
-//                        .and().formLogin().failureUrl("/HomeAdmin")
-//                        .and().formLogin().defaultSuccessUrl("/",false);
-        
-//        http.csrf().disable();
-//        http.authorizeRequests()
-//                        .antMatchers("/**").authenticated()
-//                        .antMatchers("/shutdown").permitAll()
-//                        .and().formLogin().passwordParameter("password").usernameParameter("username")
-//                        .and().formLogin().loginPage("/authentication.html").permitAll()
-//                        .and().formLogin().loginProcessingUrl("/login")
-//                        .and().formLogin().failureUrl("/authentication.html")
-//                        .and().formLogin().defaultSuccessUrl("/",false);
-        
-//      http
-//      .csrf().disable()
-//      .authorizeRequests()
-//          .antMatchers("/shutdown").permitAll()
-//          .anyRequest().authenticated()
-//          .and()
-//      .formLogin()
-//          .loginPage("/HomeAdmin")
-//          .loginProcessingUrl("/login")
-//          .failureUrl("/HomeAdmin")
-//          .permitAll();
-      
     }
 
     @Override
