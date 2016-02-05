@@ -6,37 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
-public class Programa {
-	@Id	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    private int numeroIdentificacion;
+public class Evento {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int numeroIdentificacion;
 	
-	@NotEmpty(message = "Por favor digite el nombre") 
 	private String nombre;
-	@NotEmpty(message = "Por favor digite el perfil profesional")
 	private String perfilProfesional;
-	@NotEmpty(message = "Por favor digite el perfil ocupacional")
 	private String perfilOcupacional;
-	@NotEmpty(message = "Por favor digite el proposito de la formación")
 	private String propositoFormacion;
-	@NotEmpty(message = "Por favor digite el área de formación")
 	private String areaFormacion;
-	@NotEmpty(message = "Por favor digite los requisitos")
 	private String requisitos;
-	@NotEmpty(message = "Por favor digite el contacto")
 	private String contacto;
-	
 	private boolean habilitado;
 	
-	
-	public Programa(){
+	public Evento(){
 		
 	}
 
-	public Programa(int numeroIdentificacion,String nombre, String perfilProfesional, String perfilOcupacional, String propositoFormacion, String areaFormacion, String requisitos, String contacto, boolean habilitado) {
+	public Evento(int numeroIdentificacion,String nombre, String perfilProfesional, String perfilOcupacional, String propositoFormacion, String areaFormacion, String requisitos, String contacto, boolean habilitado) {
 		super();
 		this.nombre = nombre;
 		this.numeroIdentificacion = numeroIdentificacion;

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GeneratorType;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Estudiante {
@@ -15,12 +16,23 @@ public class Estudiante {
 	@Id
     //GeneratedValue(strategy=GenerationType.AUTO)
 	private int numeroIdentificacion;
-
+	
+	@NotEmpty(message = "Por favor digite su nombre")
 	private String nombre;
+	
+	@NotEmpty(message = "Por favor digite su apellido")
 	private String apellido;
+	
+	@NotEmpty(message = "Por favor digite su tipo de documento de identificación")
 	private String tipoDocumentoIdentificacion;
+	
+	@NotEmpty(message = "Por favor digite su fecha de nacimiento")
 	private Date fechaNacimiento;
+	
+	@NotEmpty(message = "Por favor digite su correo")
 	private String Email;
+	
+	@NotEmpty(message = "Por favor digite su contraseña")
 	private String Contrasena;
 		
 	public Estudiante(){

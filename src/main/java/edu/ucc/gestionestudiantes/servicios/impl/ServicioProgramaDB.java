@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.domain.Programa;
 import edu.ucc.gestionestudiantes.repositorios.RepositorioPrograma;
 import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;
@@ -42,6 +43,7 @@ public class ServicioProgramaDB implements ServicioPrograma {
 				
 				p.setNumeroIdentificacion(programa.getNumeroIdentificacion());
 			}
+			p.setNumeroIdentificacion(programa.getNumeroIdentificacion());
 			p.setAreaFormacion(programa.getAreaFormacion());
 			p.setContacto(programa.getContacto());
 			p.setHabilitado(programa.isHabilitado());
@@ -62,8 +64,7 @@ public class ServicioProgramaDB implements ServicioPrograma {
 
 	@Override
 	public List<Programa> listarProgramas(int pagina, int cantidadResultados) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Programa>) repoPrograma.findAll();
 	}
 
 	@Override

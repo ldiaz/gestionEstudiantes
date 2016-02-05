@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:include="layout/principalProgramas :: page">
+<head>
+	<style type="text/css">
+      .on  { background:blue; }
+      .off { background:red; }
+     </style>
+</head> 
+     
+<body th:fragment="content">
+	
+	<h1>Formulario de registro de programa</h1>
+	<div class="container">
+	<form th:action="@{/programa/crear}" th:object="${programa}" method="post">
+		
+		<div class="form-group">
+		    <label for="nombre">Nombre programa:</label>
+			<input class="form-control" type="text" name="nombre" th:field="*{nombre}" value="" />
+		</div>
+		
+		<div class="form-group">
+		    <label for="perfilProfesional">Perfil Profesional:</label>
+			<input class="form-control" type="text" name="perfilProfesional" th:field="*{perfilProfesional}" value="" />
+		</div>
+		
+		<div class="form-group">
+		    <label for="perfilOcupacional">Perfil Ocupacional:</label>
+			<input class="form-control" type="text" name="perfilOcupacional" th:field="*{perfilOcupacional}" value="" />
+		</div>
+		
+		<div class="form-group">
+		    <label for="propositoFormacion">Proposito Formación:</label>
+			<input class="form-control" type="text" name="propositoFormacion" th:field="*{propositoFormacion}" value="" />
+		</div>
+		
+		<div class="form-group">
+		    <label for="areaFormacion">Area Formación:</label>
+			<input class="form-control" type="text" name="areaFormacion" th:field="*{areaFormacion}" value="" />
+		</div>
+		
+		<div class="form-group">
+		    <label for="requisitos">Requisitos:</label>
+			<input class="form-control" type="text" name="requisitos" th:field="*{requisitos}" value="" />
+		</div>
+		
+		<div class="form-group">
+		    <label for="contacto">Contacto:</label>
+			<input class="form-control" type="text" name="contacto" th:field="*{contacto}" value="" />
+		</div>
+		
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="habilitado" class="switch-light" onclick=""> -->
+<!--   			<strong> -->
+<!--     			Habilitado:  -->
+<!--   			</strong> -->
+<!--   		<input type="checkbox" name="habilitado" th:field="*{habilitado}"/> -->
+<!-- 		</label> -->
+<!-- 		</div> -->
+
+		<div class="form-group">
+		    <label for="habilitado">Habilitado:</label>
+			<select class="form-control" name="habilitado" th:field="*{habilitado}">
+				<option value="True">Si</option>
+				<option value="False">No</option>				
+			</select>
+		</div>
+		
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>		
+		<input class="btn btn-default" type="submit" value="Enviar" />	
+		
+	</form>
+	</div>
+	
+	
+</body>
+</html>

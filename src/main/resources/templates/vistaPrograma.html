@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="layout/principalProgramas :: page">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body th:fragment="content">
+	
+	<h1>Vista de registro de programa</h1>
+	
+	<p th:if="${error != null}" th:text="${error}" class="bg-danger"></p>
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 
+	<table>
+		<tr>
+			<td>Numero identificacion: </td>
+			<td th:text="${programa.numeroIdentificacion}"></td>
+		</tr>
+	
+		<tr>
+			<td>Nombre</td>
+			<td th:text="${programa.nombre}"></td>
+		</tr>
+		
+		<tr>
+			<td>Perfil profesional</td>
+			<td th:text="${programa.perfilProfesional}"></td>
+		</tr>
+		
+		<tr>
+			<td>Perfil ocupacional</td>
+			<td th:text="${programa.perfilOcupacional}"></td>
+		</tr>
+		
+		<tr>
+			<td>Proposito formación</td>
+			<td th:text="${programa.propositoFormacion}"></td>
+		</tr>
+		
+		<tr>
+			<td>Area formación</td>
+			<td th:text="${programa.areaFormacion}"></td>
+		</tr>
+		
+		<tr>
+			<td>Requisitos</td>
+			<td th:text="${programa.requisitos}"></td>
+		</tr>
+		
+		<tr>
+			<td>Contacto</td>
+			<td th:text="${programa.contacto}"></td>
+		</tr>
+		
+		<tr>
+			<td>Habilitado</td>
+			<td th:text="${programa.habilitado}"></td>
+		</tr>	
+		
+	</table>
+	 
+</body>
+</html>

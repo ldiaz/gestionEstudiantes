@@ -25,7 +25,7 @@ public class ControladorEstudiante {
 	@Autowired
 	private InterfazServicioUsuario servicioUsuario;
 
-	@RequestMapping(value="estudiantes/nuevo", method=RequestMethod.GET)
+	@RequestMapping(value="estudiante/nuevo", method=RequestMethod.GET)
 	public String formularioEstudiante(Model modelo){
 		
 		System.out.println("Obteniendo el formulario");

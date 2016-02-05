@@ -17,15 +17,22 @@
 	<table class="table">
 		<tr>
 			<th>Identificacion</th>
+			<th>Tipo Documento</th>
 			<th>Nombre</th>
 			<th>Apellido</th>
+			<th>Fecha de Nacimiento</th>
+			<th>Correo</th>
 			<th>Acciones</th>
 		</tr>
+
 		
 		<tr th:each="estudiante : ${estudiantes}">
 			<td th:text="${estudiante.numeroIdentificacion}"></td>
+			<td th:text="${estudiante.tipoDocumentoIdentificacion}"></td>
 			<td th:text="${estudiante.nombre}"></td>
-			<td th:text="${estudiante.apellido}"></td>
+			<td th:text="${estudiante.apellido}"></td>			
+			<td th:text="${estudiante.fechaNacimiento}"></td>
+			<td th:text="${estudiante.Email}"></td>			
 			<td>
 				<a class="btn btn-primary" th:href="@{/estudiantes/{idEstudiante}/editar(idEstudiante=${estudiante.numeroIdentificacion})}">Editar</a>
 				<a class="btn btn-danger" th:href="@{/estudiantes/{idEstudiante}/eliminar(idEstudiante=${estudiante.numeroIdentificacion})}">Eliminar</a>

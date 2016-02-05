@@ -14,8 +14,8 @@ import edu.ucc.gestionestudiantes.domain.Programa;
 import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;
 
 @Controller
-public class ControladorPrograma {
-	
+public class ControladorEvento {
+	/*
 	@Autowired
 	private ServicioPrograma servPrograma;
 
@@ -40,10 +40,10 @@ public class ControladorPrograma {
 		return "vistaPrograma";
 	}
 	
-	@RequestMapping(value="programas", method=RequestMethod.GET)
+	@RequestMapping(value="programa", method=RequestMethod.GET)
 	public String listarPrograma(Model modelo){
 		
-		List<Programa> listado = servPrograma.listarProgramas(1, 8);
+		List<Programa> listado = servPrograma.listarProgramas(1, 5);
 		
 		modelo.addAttribute("programa", listado);
 		

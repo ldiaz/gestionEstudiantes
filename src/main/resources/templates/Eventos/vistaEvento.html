@@ -7,7 +7,7 @@
 </head>
 <body th:fragment="content">
 	
-	<h1>Vista de registro de estudiante</h1>
+	<h1>Vista de registro de evento</h1>
 	
 	
 	<p th:if="${error != null}" th:text="${error}" class="bg-danger"></p>
@@ -15,38 +15,19 @@
 	<table>
 		<tr>
 			<td>Numero identificacion</td>
-			<td th:text="${estudiante.numeroIdentificacion}"></td>
+			<td th:text="${evento.numeroIdentificacion}"></td>
 		</tr>
-		
-		<tr>
-			<td>Tipo documento</td>
-			<td th:text="${estudiante.tipoDocumentoIdentificacion}"></td>
-		</tr>
-
+	
 		<tr>
 			<td>Nombre</td>
-			<td th:text="${estudiante.nombre}"></td>
+			<td th:text="${evento.nombre}"></td>
 		</tr>
 		
 		<tr>
 			<td>Apellido</td>
-			<td th:text="${estudiante.apellido}"></td>
+			<td th:text="${evento.apellido}"></td>
 		</tr>
 		
-		<tr>
-			<td>Fecha Nacimiento</td>
-			<td th:text="${estudiante.fechaNacimiento}"></td>
-		</tr>
-		
-		<tr>
-			<td>Correo electronico</td>
-			<td th:text="${estudiante.Email}"></td>
-		</tr>
-		
-		<tr>
-			<td>Contraseña</td>
-			<td th:text="${estudiante.Contrasena}"></td>
-		</tr>		
 		
 	</table>
 	 
