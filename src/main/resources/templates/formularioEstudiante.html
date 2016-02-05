@@ -1,10 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      th:include="layout/principal :: page">
+      th:fragment="page">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Test</title>
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+        
+    </head>
+
 <body th:fragment="content">
-
-
+	
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/Home">Home</a>
+    </div>
+  </div>
+</nav>		
+		
     <h1>Formulario de registro de estudiante</h1>
 	<div class="container">	
 	<form th:action="@{/estudiantes/crear}" th:object="${estudiante}" method="post">
@@ -30,26 +53,27 @@
 		
 		<div class="form-group">
 		    <label for="numeroIdentificacion">Numero de identificación:</label>
-			<input class="form-control" type="text" name="numeroIdentificacion" value="" th:field="*{numeroIdentificacion}"/>
+			<input class="form-control" type="number" name="numeroIdentificacion" value="" th:field="*{numeroIdentificacion}"/>
 		</div>
-		
+
 		<div class="form-group">
-		    <label for="Email">Correo Electrónico:</label>
-			<input class="form-control" type="text" name="Email" value="" th:field="*{Email}"/>
+				<label for="email">correo electrónico:</label> <input
+					class="form-control" type="text" name="email" value=""
+					th:field="*{Email}" />
 		</div>
-		
+
 		<div class="form-group">
-		    <label for="Contrasena">Contrasena:</label>
-			<input class="form-control" type="password" name="Contrasena" value="" th:field="*{Contrasena}"/>
+				<label for="contrasena">contrasena:</label> <input
+					class="form-control" type="password" name="contrasena" value=""
+					th:field="*{Contrasena}" />
 		</div>
-		
+
 		<div class="form-group">
-		    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-			<input class="form-control" type="date" min="1920-01-01" max="today" name="fechaNacimiento" value="" th:field="*{fechaNacimiento}"/>
+				<label for="fechaNacimiento">fecha de nacimiento:</label> 
+				<input class="form-control" type="date" name="fechNacimiento" value="" th:field="*{fechaNacimiento}" />
 		</div>
-		
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 
-		
+<!-- 		 min="1920-01-01" max="2010-01-01" 	 -->
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>		
 		<input class="btn btn-default" type="submit" value="Enviar" />
 	</form>
 	</div>

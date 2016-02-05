@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.domain.Programa;
 import edu.ucc.gestionestudiantes.repositorios.RepositorioPrograma;
 import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;

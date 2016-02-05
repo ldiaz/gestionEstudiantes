@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:include="layout/principal :: page">
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 	th:include="layout/principal :: page"> -->
 <head> 
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,7 +15,7 @@
 	<table>
 		<tr>
 			<td>Numero identificacion</td>
-			<td th:text="${estudiante.numeroIdentificacion}"></td>
+			<td th:number="${estudiante.numeroIdentificacion}"></td>
 		</tr>
 		
 		<tr>
@@ -35,7 +35,7 @@
 		
 		<tr>
 			<td>Fecha Nacimiento</td>
-			<td th:text="${estudiante.fechaNacimiento}"></td>
+			<td th:date="${estudiante.fechaNacimiento}"></td>
 		</tr>
 		
 		<tr>

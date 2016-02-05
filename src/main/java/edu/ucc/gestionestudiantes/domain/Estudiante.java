@@ -3,11 +3,7 @@ package edu.ucc.gestionestudiantes.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GeneratorType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -15,6 +11,7 @@ public class Estudiante {
 	
 	@Id
     //GeneratedValue(strategy=GenerationType.AUTO)
+	@NotEmpty(message = "Por favor digite su numero de identificación")
 	private int numeroIdentificacion;
 	
 	@NotEmpty(message = "Por favor digite su nombre")
