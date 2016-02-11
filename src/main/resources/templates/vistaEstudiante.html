@@ -1,45 +1,67 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<!-- 	th:include="layout/principal :: page"> -->
-<head> 
-    <title>Getting Started: Handling Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="page">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Test</title>
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+        
+    </head>
 <body th:fragment="content">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/Home">Home</a>
+    </div>
+  </div>
+</nav>
 	
-	<h1>Vista de registro de estudiante</h1>
 	
-	
+	<h1 align="center">Vista de registro de estudiante</h1>
+	<br></br>
+	<br></br>
+		
 	<p th:if="${error != null}" th:text="${error}" class="bg-danger"></p>
 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 
-	<table>
+	<table style="margin: 0 auto;">
 		<tr>
-			<td>Numero identificacion</td>
+			<td>Numero identificacion: </td>
 			<td th:number="${estudiante.numeroIdentificacion}"></td>
 		</tr>
 		
 		<tr>
-			<td>Tipo documento</td>
+			<td>Tipo documento: </td>
 			<td th:text="${estudiante.tipoDocumentoIdentificacion}"></td>
 		</tr>
 
 		<tr>
-			<td>Nombre</td>
+			<td>Nombre: </td>
 			<td th:text="${estudiante.nombre}"></td>
 		</tr>
 		
 		<tr>
-			<td>Apellido</td>
+			<td>Apellido: </td>
 			<td th:text="${estudiante.apellido}"></td>
 		</tr>
 		
 		<tr>
-			<td>Fecha Nacimiento</td>
+			<td>Fecha Nacimiento: </td>
 			<td th:date="${estudiante.fechaNacimiento}"></td>
 		</tr>
 		
 		<tr>
-			<td>Correo electronico</td>
+			<td>Correo electronico: </td>
 			<td th:text="${estudiante.Email}"></td>
 		</tr>
 		
@@ -49,6 +71,6 @@
 		</tr>		
 		
 	</table>
-	 
+	
 </body>
 </html>

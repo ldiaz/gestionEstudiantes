@@ -4,14 +4,19 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Estudiante {
 	
 	@Id
-    //GeneratedValue(strategy=GenerationType.AUTO)
-	@NotEmpty(message = "Por favor digite su numero de identificación")
+    @NotNull(message = "Por favor digite su numero de identificación")
 	private int numeroIdentificacion;
 	
 	@NotEmpty(message = "Por favor digite su nombre")
@@ -23,7 +28,9 @@ public class Estudiante {
 	@NotEmpty(message = "Por favor digite su tipo de documento de identificación")
 	private String tipoDocumentoIdentificacion;
 	
-	@NotEmpty(message = "Por favor digite su fecha de nacimiento")
+	@NotNull(message = "Por favor digite su fecha de nacimiento")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaNacimiento;
 	
 	@NotEmpty(message = "Por favor digite su correo")

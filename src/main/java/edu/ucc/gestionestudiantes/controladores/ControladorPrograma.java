@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.ucc.gestionestudiantes.domain.Estudiante;
+import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
 import edu.ucc.gestionestudiantes.domain.Programa;
+import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
+import edu.ucc.gestionestudiantes.servicios.ServicioInscripcionPrograma;
 import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;
 
 @Controller
@@ -18,6 +22,12 @@ public class ControladorPrograma {
 	
 	@Autowired
 	private ServicioPrograma servPrograma;
+	
+	@Autowired
+	private ServicioEstudiante servEstudiante;
+	
+	@Autowired
+	private ServicioInscripcionPrograma servInsPrograma;
 
 	@RequestMapping(value="programa/nuevo", method=RequestMethod.GET)
 	public String formularioPrograma(Model modelo){
@@ -51,6 +61,18 @@ public class ControladorPrograma {
 		return "listadoProgramas";
 	}
 	
+
+	@RequestMapping(value="programasInscripcion", method=RequestMethod.GET)
+	public String listarProgramaInscripcion(Model modelo){
+		
+		List<Programa> listado = servPrograma.listarProgramas(1, 8);
+		
+		modelo.addAttribute("programa", listado);
+		
+		
+		return "listadoProgramasInscripcion";
+	}
+	
 	@RequestMapping(value="programas/{idPrograma}/editar", method=RequestMethod.GET)
 	public String editarPrograma(@PathVariable Integer idPrograma, Model modelo){
 		
@@ -59,6 +81,20 @@ public class ControladorPrograma {
 		Programa p = servPrograma.buscarPrograma(idPrograma);
 		
 		modelo.addAttribute("programa", p);
+		
+		return "formularioProgramaActualizar";
+	}
+	
+	@RequestMapping(value="programas/{idPrograma}{idEstudiante}/inscribir", method=RequestMethod.GET)
+	public String inscribirPrograma(@PathVariable Integer idPrograma, @PathVariable Integer idEstudiante, Model modelo){
+		
+		System.out.println("idPrograma= "+ idPrograma);
+		System.out.println("idEstudiante= "+ idEstudiante);
+				
+		EstudiantePrograma EP = new EstudiantePrograma(idPrograma, idEstudiante);
+		servInsPrograma.crearEstudiantePrograma(EP);
+						
+		modelo.addAttribute("estudianteprograma", EP);
 		
 		return "formularioProgramaActualizar";
 	}

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	 th:include="layout/principalProgramas :: page">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body>
+
+<div th:fragment="content">
+
+	<h1>Listado de programas</h1>
+	
+	<table class="table">
+		<tr>
+			<th>ID.</th>
+			<th>Nombre</th>
+			<th>Perfil profesional</th>
+			<th>Perfil ocupacional</th>
+			<th>Proposito formacion</th>
+			<th>Area formacion</th>
+			<th>Requisitos</th>
+			<th>Contacto</th>
+			<th>Habilitado</th>
+		</tr>
+		
+		<tr th:each="programa : ${programa}">
+			<td th:text="${programa.numeroIdentificacion}"></td>
+			<td th:text="${programa.nombre}"></td>
+			<td th:text="${programa.perfilProfesional}"></td>
+			<td th:text="${programa.perfilOcupacional}"></td>
+			<td th:text="${programa.propositoFormacion}"></td>
+			<td th:text="${programa.areaFormacion}"></td>
+			<td th:text="${programa.requisitos}"></td>
+			<td th:text="${programa.contacto}"></td>
+			<td th:text="${programa.habilitado}"></td>
+			
+			<td>
+				<a class="btn btn-primary" th:href="@{/programas/{idprograma}/inscribir(idprograma=${programa.numeroIdentificacion})}">Inscribir</a>
+
+			</td>
+		</tr>
+		
+	</table>
+	
+	
+	</div>
+</body>
+</html>

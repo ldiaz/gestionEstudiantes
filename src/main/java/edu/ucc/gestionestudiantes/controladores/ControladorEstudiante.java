@@ -2,6 +2,8 @@ package edu.ucc.gestionestudiantes.controladores;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class ControladorEstudiante {
@@ -35,8 +38,8 @@ public class ControladorEstudiante {
 	}
 	
 
-	@RequestMapping(value="estudiantes/crear", method=RequestMethod.POST)
-	public String crearEstudiante(@ModelAttribute Estudiante estudiante, Model modelo){
+	@RequestMapping(value="estudiantesss/crear", method=RequestMethod.POST)
+	public String crearEstudiante(@ModelAttribute @Valid Estudiante estudiante, BindingResult bindingResult, Model modelo){
 		
 		System.out.println("posteando desde el formulario");
 		estudiante.setNombre(estudiante.getNombre());
