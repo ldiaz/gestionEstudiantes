@@ -31,13 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    	
 //    	http.authorizeRequests().antMatchers("/HomeAdministrador").authenticated();
 //        http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
-    	http.authorizeRequests().antMatchers("/estudiantes").authenticated();
-        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/editar").authenticated();
-        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/actualizar").authenticated();
-        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").authenticated();
+    	http.authorizeRequests().antMatchers("/estudiantes").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/editar").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/actualizar").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("programas/**").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("programa/**").fullyAuthenticated();
         http.authorizeRequests().antMatchers("/HomeAdministrador").hasAuthority("Admin");
-        http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
-        http.authorizeRequests().antMatchers("/Home").authenticated();
+        http.authorizeRequests().antMatchers("/HomeUsuario").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("/Home").fullyAuthenticated();
 
 
         http.formLogin()
