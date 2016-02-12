@@ -20,13 +20,19 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 		
 		return repoEstudiante.findOne(idEstudiante);
 	}
+	
+	@Override
+	public Estudiante buscarPorCorreo(String Correo) {
+		
+		return repoEstudiante.findByemail(Correo);
+	}
 
 	@Override
 	public Estudiante crearEstudiante(Estudiante nuevoEstudiante) {
 		
 		return repoEstudiante.save(nuevoEstudiante);
 	}
-
+	
 	@Override
 	public Estudiante actualizarEstudiante(int idEstudiante, Estudiante estudiante) throws Exception {
 		Estudiante e = repoEstudiante.findOne(idEstudiante);

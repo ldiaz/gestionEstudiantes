@@ -2,6 +2,7 @@ package edu.ucc.gestionestudiantes.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -33,8 +34,9 @@ public class Estudiante {
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaNacimiento;
 	
+	@Column(name="email")
 	@NotEmpty(message = "Por favor digite su correo")
-	private String Email;
+	private String email;
 	
 	@NotEmpty(message = "Por favor digite su contraseña")
 	private String Contrasena;
@@ -50,7 +52,7 @@ public class Estudiante {
 		this.apellido = apellido;
 		this.tipoDocumentoIdentificacion = tipoDocumentoIdentificacion;
 		this.fechaNacimiento = fechaNacimiento;
-		this.Email = Email;
+		this.email = Email;
 		this.Contrasena = Contrasena;
 	}
 
@@ -88,11 +90,11 @@ public class Estudiante {
 	}
 	
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
-	public void setEmail(String email) {
-		Email = email;
+	public void setEmail(String emails) {
+		email = emails;
 	}
 
 	public String getContrasena() {

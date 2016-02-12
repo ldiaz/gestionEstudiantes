@@ -8,6 +8,8 @@ public interface ServicioEstudiante {
 	
 	public Estudiante buscarEstudiante(int idEstudiante);
 	
+	public Estudiante buscarPorCorreo(String correo);
+	
 	public Estudiante crearEstudiante(Estudiante nuevoEstudiante);
 	
 	public Estudiante actualizarEstudiante(int idEstudiante, Estudiante estudiante) throws Exception;

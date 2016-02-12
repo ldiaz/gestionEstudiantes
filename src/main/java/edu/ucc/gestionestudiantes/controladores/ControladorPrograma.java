@@ -1,5 +1,6 @@
 package edu.ucc.gestionestudiantes.controladores;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
 import edu.ucc.gestionestudiantes.domain.Programa;
+import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
+import edu.ucc.gestionestudiantes.seguridad.service.ServicioUsuario;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 import edu.ucc.gestionestudiantes.servicios.ServicioInscripcionPrograma;
 import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;
+
 
 @Controller
 public class ControladorPrograma {
@@ -25,6 +29,9 @@ public class ControladorPrograma {
 	
 	@Autowired
 	private ServicioEstudiante servEstudiante;
+	
+	//@Autowired
+	private ServicioUsuario servUsuario;
 	
 	@Autowired
 	private ServicioInscripcionPrograma servInsPrograma;
@@ -66,7 +73,6 @@ public class ControladorPrograma {
 	public String listarProgramaInscripcion(Model modelo){
 		
 		List<Programa> listado = servPrograma.listarProgramas(1, 8);
-		
 		modelo.addAttribute("programa", listado);
 		
 		
@@ -85,18 +91,23 @@ public class ControladorPrograma {
 		return "formularioProgramaActualizar";
 	}
 	
-	@RequestMapping(value="programas/{idPrograma}{idEstudiante}/inscribir", method=RequestMethod.GET)
-	public String inscribirPrograma(@PathVariable Integer idPrograma, @PathVariable Integer idEstudiante, Model modelo){
+	@RequestMapping(value="programas/{idPrograma}/inscribir", method=RequestMethod.GET)
+	public String inscribirPrograma(@PathVariable Integer idPrograma, Principal currentUser, Model modelo){
+		String nombre = currentUser.getName();
+		//Usuario user = servUsuario.cargarUsuario(currentUser.getName());
+		Usuario user = servUsuario.cargarUsuario(nombre);
+		Estudiante e = servEstudiante.buscarPorCorreo(user.getUsername());
+		//Estudiante e = servEstudiante.buscarPorCorreo("cpipe");
 		
 		System.out.println("idPrograma= "+ idPrograma);
-		System.out.println("idEstudiante= "+ idEstudiante);
-				
-		EstudiantePrograma EP = new EstudiantePrograma(idPrograma, idEstudiante);
+		System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
+		
+		EstudiantePrograma EP = new EstudiantePrograma(idPrograma, e.getNumeroIdentificacion());
 		servInsPrograma.crearEstudiantePrograma(EP);
 						
 		modelo.addAttribute("estudianteprograma", EP);
 		
-		return "formularioProgramaActualizar";
+		return "HomeEstudiante";
 	}
 	
 	@RequestMapping(value="programas/{idPrograma}/actualizar", method=RequestMethod.POST)

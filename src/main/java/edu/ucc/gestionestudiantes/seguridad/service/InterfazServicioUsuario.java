@@ -8,5 +8,7 @@ public interface InterfazServicioUsuario {
 	public Usuario guardarUsuario(Usuario nuevo);
 	
 	public RolUsuario guardarRolUsuario(RolUsuario nuevoRol);
+	
+	public Usuario cargarUsuario(String userName);
 
 }

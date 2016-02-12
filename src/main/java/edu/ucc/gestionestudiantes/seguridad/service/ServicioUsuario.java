@@ -70,6 +70,11 @@ public class ServicioUsuario implements UserDetailsService, InterfazServicioUsua
 	public RolUsuario guardarRolUsuario(RolUsuario nuevoRol){
 		return rolRepository.save(nuevoRol);		
 	}
+
+	@Override
+	public Usuario cargarUsuario(String userName) {
+		return userRepository.findByUsername(userName);
+	}
 	
 	
     

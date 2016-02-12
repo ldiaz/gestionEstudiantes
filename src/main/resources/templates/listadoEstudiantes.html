@@ -32,7 +32,7 @@
 			<td th:text="${estudiante.nombre}"></td>
 			<td th:text="${estudiante.apellido}"></td>			
 			<td th:text="${estudiante.fechaNacimiento}"></td>
-			<td th:text="${estudiante.Email}"></td>			
+			<td th:text="${estudiante.email}"></td>			
 			<td>
 				<a class="btn btn-primary" th:href="@{/estudiantes/{idEstudiante}/editar(idEstudiante=${estudiante.numeroIdentificacion})}">Editar</a>
 				<a class="btn btn-danger" th:href="@{/estudiantes/{idEstudiante}/eliminar(idEstudiante=${estudiante.numeroIdentificacion})}">Eliminar</a>
