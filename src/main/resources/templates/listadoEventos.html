@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	 th:include="layout/principaleventos :: page">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body>
+
+<div th:fragment="content">
+
+	<h1>Listado de eventos</h1>
+	
+	<table class="table">
+		<tr>
+			<th>ID.</th>
+			<th>Nombre</th>
+			<th>Perfil profesional</th>
+			<th>Perfil ocupacional</th>
+			<th>Proposito formacion</th>
+			<th>Area formacion</th>
+			<th>Requisitos</th>
+			<th>Contacto</th>
+			<th>Habilitado</th>
+		</tr>
+		
+		<tr th:each="evento : ${evento}">
+			<td th:text="${evento.numeroIdentificacion}"></td>
+			<td th:text="${evento.nombre}"></td>
+			<td th:text="${evento.perfilProfesional}"></td>
+			<td th:text="${evento.perfilOcupacional}"></td>
+			<td th:text="${evento.propositoFormacion}"></td>
+			<td th:text="${evento.areaFormacion}"></td>
+			<td th:text="${evento.requisitos}"></td>
+			<td th:text="${evento.contacto}"></td>
+			<td th:text="${evento.habilitado}"></td>
+			
+			<td>
+				<a class="btn btn-primary" th:href="@{/eventos/{idevento}/editar(idevento=${evento.numeroIdentificacion})}">Editar</a>
+<!-- 				<a class="btn btn-danger" th:href="@{/eventos/{idevento}/eliminar(idevento=${evento.numeroIdentificacion})}">Eliminar</a> -->
+			</td>
+		</tr>
+		
+	</table>
+	
+	
+	</div>
+</body>
+</html>
