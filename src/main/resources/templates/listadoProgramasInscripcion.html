@@ -22,7 +22,7 @@
 			<th>Area formacion</th>
 			<th>Requisitos</th>
 			<th>Contacto</th>
-			<th>Habilitado</th>
+<!-- 			<th>Habilitado</th> -->
 		</tr>
 		
 		<tr th:each="programa : ${programa}">
@@ -34,7 +34,7 @@
 			<td th:text="${programa.areaFormacion}"></td>
 			<td th:text="${programa.requisitos}"></td>
 			<td th:text="${programa.contacto}"></td>
-			<td th:text="${programa.habilitado}"></td>
+<!-- 			<td th:text="${programa.habilitado}"></td> -->
 			
 			<td>
 				<a class="btn btn-primary" th:href="@{/programas/{idprograma}/inscribir(idprograma=${programa.numeroIdentificacion})}">Inscribir</a>

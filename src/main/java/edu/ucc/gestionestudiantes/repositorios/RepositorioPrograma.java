@@ -9,5 +9,7 @@ import edu.ucc.gestionestudiantes.domain.Programa;
 public interface RepositorioPrograma extends CrudRepository<Programa, Integer>{
 	//buscar estudiantes menores de cierta edad
 	public List<Programa> findByNombre(String nombre);
+	
+	public List<Programa> findByHabilitado(boolean estado);
 
 }

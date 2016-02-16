@@ -14,6 +14,8 @@ public interface ServicioPrograma {
 	
 	public List<Programa> listarProgramas(int pagina, int cantidadResultados);
 	
+	public List<Programa> listarProgramasIns(int pagina, int cantidadResultados);
+	
 	public Programa desHabilitar(int idPrograma) throws Exception;
 
 }

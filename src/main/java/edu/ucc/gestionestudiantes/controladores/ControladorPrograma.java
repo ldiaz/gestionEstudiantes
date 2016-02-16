@@ -72,7 +72,7 @@ public class ControladorPrograma {
 	@RequestMapping(value="programasInscripcion", method=RequestMethod.GET)
 	public String listarProgramaInscripcion(Model modelo){
 		
-		List<Programa> listado = servPrograma.listarProgramas(1, 8);
+		List<Programa> listado = servPrograma.listarProgramasIns(1, 8);
 		modelo.addAttribute("programa", listado);
 		
 		

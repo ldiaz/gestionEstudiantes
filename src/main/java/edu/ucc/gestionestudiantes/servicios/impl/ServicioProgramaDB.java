@@ -65,6 +65,11 @@ public class ServicioProgramaDB implements ServicioPrograma {
 	public List<Programa> listarProgramas(int pagina, int cantidadResultados) {
 		return (List<Programa>) repoPrograma.findAll();
 	}
+	
+	@Override
+	public List<Programa> listarProgramasIns(int pagina, int cantidadResultados) {
+		return (List<Programa>) repoPrograma.findByHabilitado(true);
+	}
 
 	@Override
 	public Programa desHabilitar(int idPrograma) throws Exception {
