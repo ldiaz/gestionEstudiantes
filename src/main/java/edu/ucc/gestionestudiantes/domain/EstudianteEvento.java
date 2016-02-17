@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class EstudianteEvento {
@@ -11,8 +12,12 @@ public class EstudianteEvento {
 	@Id	
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
-	private int IdEvento;	
-	private int IdEstudiante;
+	
+	@OneToOne
+	private Evento evento;
+	
+	@OneToOne
+	private Estudiante estudiante;
 	
 	
 	public int getId() {
@@ -21,26 +26,26 @@ public class EstudianteEvento {
 	public void setId(int id) {
 		Id = id;
 	}	
-	public int getIdEstudiante() {
-		return IdEstudiante;
+		
+	public Evento getEvento() {
+		return evento;
 	}
-	public void setIdEstudiante(int idEstudiante) {
-		IdEstudiante = idEstudiante;
-	}	
-	public int getIdEvento() {
-		return IdEvento;
+	public void setEvento(Evento evento) {
+		this.evento = evento;
 	}
-	public void setIdPrograma(int idEvento) {
-		IdEvento = idEvento;
+	public Estudiante getEstudiante() {
+		return estudiante;
 	}
-	
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
 	public EstudianteEvento(){
 		
 	}
 	
-	public EstudianteEvento(int idEvento, int idEstudiante){
-		this.IdEvento = idEvento;
-		this.IdEstudiante = idEstudiante;
+	public EstudianteEvento(Evento evento, Estudiante estudiante){
+		this.evento = evento;
+		this.estudiante = estudiante;
 	}
 	
 	

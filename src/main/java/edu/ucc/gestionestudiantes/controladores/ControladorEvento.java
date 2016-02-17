@@ -3,6 +3,8 @@ package edu.ucc.gestionestudiantes.controladores;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,7 @@ import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.domain.EstudianteEvento;
 import edu.ucc.gestionestudiantes.domain.Evento;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
-import edu.ucc.gestionestudiantes.seguridad.service.ServicioUsuario;
+import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 import edu.ucc.gestionestudiantes.servicios.ServicioEvento;
 import edu.ucc.gestionestudiantes.servicios.impl.ServicioInscripcionEventoDB;
@@ -28,8 +30,8 @@ public class ControladorEvento {
 	@Autowired
 	private ServicioEstudiante servEstudiante;
 	
-	//@Autowired
-	private ServicioUsuario servUsuario;
+	@Autowired
+	private InterfazServicioUsuario servUsuario;
 	
 	@Autowired
 	private ServicioInscripcionEventoDB servInsEvento;
@@ -89,25 +91,6 @@ public class ControladorEvento {
 		return "formularioEventoActualizar";
 	}
 	
-	@RequestMapping(value="eventos/{idEvento}/inscribir", method=RequestMethod.GET)
-	public String inscribirEvento(@PathVariable Integer idEvento, Principal currentUser, Model modelo){
-		String nombre = currentUser.getName();
-		//Usuario user = servUsuario.cargarUsuario(currentUser.getName());
-		Usuario user = servUsuario.cargarUsuario(nombre);
-		Estudiante e = servEstudiante.buscarPorCorreo(user.getUsername());
-		//Estudiante e = servEstudiante.buscarPorCorreo("cpipe");
-		
-		System.out.println("idEvento= "+ idEvento);
-		System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
-		
-		EstudianteEvento EP = new EstudianteEvento(idEvento, e.getNumeroIdentificacion());
-		servInsEvento.crearEstudianteEvento(EP);
-						
-		modelo.addAttribute("estudianteEvento", EP);
-		
-		return "HomeEstudiante";
-	}
-	
 	@RequestMapping(value="eventos/{idEvento}/actualizar", method=RequestMethod.POST)
 	public String actualizarEvento(@PathVariable Integer idEvento, @ModelAttribute Evento evento, Model modelo){
 		
@@ -124,6 +107,32 @@ public class ControladorEvento {
 		
 		return "vistaEvento";
 	}
+	
+	
+	
+	@RequestMapping(value="eventos/{idEvento}/inscribir", method=RequestMethod.GET)
+	public String inscribirevento(final HttpServletRequest request, @PathVariable Integer idEvento, Principal principal, Model modelo){
+		
+		String currentUser = principal.getName();
+
+		Usuario user = servUsuario.cargarUsuario(currentUser);
+		Evento Even = servEvento.buscarEvento(idEvento);
+		
+		Estudiante e = servEstudiante.buscarPorCorreo(user.getUsername());
+		
+		System.out.println("idEvento= "+ idEvento);
+		System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
+		
+		EstudianteEvento EE = new EstudianteEvento(Even, e);
+		
+		modelo.addAttribute("estudianteevento", EE);
+		
+		servInsEvento.crearEstudianteEvento(EE);		
+		
+		return "Home";
+	}
+	
+
 	
 	/*
 	@RequestMapping(value="Eventos/{idEvento}/eliminar", method=RequestMethod.GET)

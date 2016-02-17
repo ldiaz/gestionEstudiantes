@@ -8,8 +8,9 @@ import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 
 @Repository
 @Qualifier(value = "userRepository")
-public interface RepositorioUsuario extends CrudRepository<Usuario, Long> {
-    public Usuario findByUsername(String username);
+public interface RepositorioUsuario extends CrudRepository<Usuario, String> {
+	public Usuario findByUsername(String username);
+	public Usuario findByEmail(String username);
     
    
 }

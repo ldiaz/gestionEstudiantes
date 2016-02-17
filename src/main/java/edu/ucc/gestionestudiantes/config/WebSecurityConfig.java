@@ -33,15 +33,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/HomeUsuario").authenticated();
     	http.authorizeRequests().antMatchers("/estudiantes").fullyAuthenticated();
         http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/editar").fullyAuthenticated();
-        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/actualizar").fullyAuthenticated();
-        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").fullyAuthenticated();
-        http.authorizeRequests().antMatchers("programas/**").fullyAuthenticated();
-        http.authorizeRequests().antMatchers("programa/**").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/actualizar").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("estudiantes/{idEstudiante}/eliminar").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("/programas").hasAuthority("Admin");
+//        http.authorizeRequests().antMatchers("/programas/**").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("/programa/**").hasAuthority("Admin");
+//        http.authorizeRequests().antMatchers("eventos/**").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("evento/**").hasAuthority("Admin");
         http.authorizeRequests().antMatchers("/HomeAdministrador").hasAuthority("Admin");
         http.authorizeRequests().antMatchers("/HomeUsuario").fullyAuthenticated();
         http.authorizeRequests().antMatchers("/Home").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("/programasInscripcion").fullyAuthenticated();
+        http.authorizeRequests().antMatchers("/eventosInscripcion").fullyAuthenticated();
 
-
+        
         http.formLogin()
                 .defaultSuccessUrl("/Home")
                 .failureUrl("/login?error")

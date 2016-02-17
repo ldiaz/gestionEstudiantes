@@ -73,7 +73,8 @@ public class ServicioUsuario implements UserDetailsService, InterfazServicioUsua
 
 	@Override
 	public Usuario cargarUsuario(String userName) {
-		return userRepository.findByUsername(userName);
+		Usuario user = userRepository.findByUsername(userName);
+		return user;
 	}
 	
 	
