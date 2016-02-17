@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-02-17T16:39:15 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEtapaPrograma" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05989c9c-2e65-42b1-8054-a92df5483077">
+	<parameter name="programa" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT distinct p.nombre as programa, estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email
+FROM estudiante
+JOIN estudiante_programa ON estudiante_programa.id_estudiante = estudiante.numero_identificacion
+ JOIN (
+SELECT programa.numero_identificacion AS programa , programa.nombre as nombre
+FROM programa
+WHERE programa.numero_identificacion =1 and $P{programa} is not null
+union all
+SELECT programa.numero_identificacion AS programa, programa.nombre as nombre
+FROM programa
+where $P{programa} is null
+) AS p ON p.programa = estudiante_programa.id_programa]]>
+	</queryString>
+	<field name="numero_identificacion" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="programa" class="java.lang.String"/>
+	<title>
+		<band height="133" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="130" height="130" uuid="e3d2db1b-243c-4e6b-81ea-50e4beb65610">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="140" y="88" width="320" height="20" uuid="1ecbe230-9b0c-4a5e-9108-8c75397024d6"/>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="130" y="47" width="310" height="41" uuid="ba1b7710-d28e-48cc-b81b-d4d4aad33097"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE POR ETAPA DE INSCRIPCION A PROGRAMA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="446" y="2" width="125" height="130" uuid="fbf8e337-0efd-43e9-a48f-e8b3b8419a95">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="33707c8d-0183-4ca1-9ec6-bc9e62ded1ef"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="220" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1bbb0db4-2dd2-4be4-9fdd-f349f4cfe750">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="320" y="0" width="142" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f638e740-40d6-4ee8-a4fb-7cf61e8e5eab">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="463" y="0" width="109" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b47fb6c8-4488-4468-be78-04db3fd1b625">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="a53b7619-b801-446d-8dde-6591fb61a1a4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="220" height="20" uuid="084536d5-0f50-40bd-a759-bf721f6628a6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="142" height="20" uuid="a239c4c4-cc69-4f6f-a6f6-6500ed7eaf58">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="0" width="110" height="20" uuid="ea2b9c5c-aa9e-47da-b0aa-216f2664599c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4"/>
+					<leftPen lineWidth="0.4"/>
+					<bottomPen lineWidth="0.4"/>
+					<rightPen lineWidth="0.4"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{programa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="370" y="0" width="100" height="30" uuid="35fc63aa-6c8f-4b8b-9d07-577e412b3058"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="470" y="0" width="100" height="30" uuid="9c84c80a-d89e-446f-bf67-1f9fd095fe15"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

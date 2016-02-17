@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteHomologaciones" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f94f62d-d4d8-4838-803a-0d8dc845f8e2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZXN0dWRpYW50ZSAsMTUsMTUsODk3ODEyODgtOWJlMS00ZTQxLWIxNmQtZjVjYjI5ZjkwMTc5Ow=="/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="86"/>
+	<parameter name="programa" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT estudiante.numero_identificacion, CONCAT( estudiante.nombre,  " ", estudiante.apellido ) AS nombre, estudiante.email,(select programa.nombre as programa from programa where programa.numero_identificacion=$P{programa}) as programa
+FROM estudiante
+ORDER BY estudiante.apellido]]>
+	</queryString>
+	<field name="numero_identificacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="programa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="13" width="130" height="117" uuid="311d4776-5052-4f02-b3d4-fc218b27afaa">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="140" y="85" width="350" height="10" uuid="4c248053-0a16-410c-8a03-940741c9b4ff"/>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="446" y="13" width="125" height="117" uuid="52fa5b20-839d-430e-9b40-b8ea8c3a4da7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="140" y="63" width="290" height="16" uuid="aa92d153-643e-4a05-8c8c-833cad4a5d40"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="__________________" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE POR HOMOLOGACION]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="120" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="24d1579f-205b-45d6-837a-6d9486754994"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="0" width="198" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="807412b1-2b24-4403-9102-6c4870859415"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="452" y="0" width="120" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="60d499d0-2d02-46af-82d6-684c6370df93"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="318" y="0" width="134" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="22194270-8310-4e4d-b9ed-27bd012890aa"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[correo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="a9d38c27-489e-4e2d-8153-21394a63de59"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="198" height="20" isPrintWhenDetailOverflows="true" uuid="b41be87e-f041-491d-af96-4ac1e75f2c75"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="0" width="134" height="20" isPrintWhenDetailOverflows="true" uuid="870f1982-a26d-4873-a93c-ac2082d8e486"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="272470b1-b1d1-4756-a82c-8cdcb5979dba"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{programa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="36">
+			<textField>
+				<reportElement x="330" y="6" width="100" height="30" uuid="d9291951-4f4c-4e22-8ad9-e56007e39c38"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="471" y="6" width="100" height="30" uuid="adf78fe9-4fd8-442d-9244-d78b8efccd5f"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
