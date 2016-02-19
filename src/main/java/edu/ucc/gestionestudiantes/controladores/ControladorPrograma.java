@@ -93,6 +93,28 @@ public class ControladorPrograma {
 		return "formularioProgramaActualizar";
 	}
 	
+//	@RequestMapping(value="programas/{idPrograma}/inscribir", method=RequestMethod.GET)
+//	public String inscribirPrograma(final HttpServletRequest request, @PathVariable Integer idPrograma, Principal principal, Model modelo){
+//		
+//		String currentUser = request.getUserPrincipal().getName();
+//		
+//		Usuario user = servUsuario.cargarUsuario(currentUser);
+//		Programa prog = servPrograma.buscarPrograma(idPrograma);
+//		
+//		Estudiante e = servEstudiante.buscarPorCorreo(user.getUsername());
+//		
+//		System.out.println("idPrograma= "+ idPrograma);
+//		System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
+//		
+//		EstudiantePrograma EP = new EstudiantePrograma(prog, e);
+//		servInsPrograma.crearEstudiantePrograma(EP);
+//						
+//		modelo.addAttribute("estudianteprograma", EP);
+//		
+//		return "Inscrito";
+//	}
+	
+	
 	@RequestMapping(value="programas/{idPrograma}/inscribir", method=RequestMethod.GET)
 	public String inscribirPrograma(final HttpServletRequest request, @PathVariable Integer idPrograma, Principal principal, Model modelo){
 		
@@ -111,7 +133,7 @@ public class ControladorPrograma {
 						
 		modelo.addAttribute("estudianteprograma", EP);
 		
-		return "HomeUsuario";
+		return "ConfirmacionInscrito";
 	}
 	
 	@RequestMapping(value="programas/{idPrograma}/actualizar", method=RequestMethod.POST)
@@ -131,6 +153,12 @@ public class ControladorPrograma {
 		return "vistaPrograma";
 	}
 	
+//	@RequestMapping(value="programas/{idEstudiantePrograma}/confirmar", method=RequestMethod.POST)
+//	private String HomeUsuario(Model modelo, EstudiantePrograma EP){		
+//		        
+//		return "/ConfirmaInscritoPrograma";
+//	}
+//	
 	/*
 	@RequestMapping(value="programas/{idPrograma}/eliminar", method=RequestMethod.GET)
 	public String eliminarPrograma(@PathVariable Integer idPrograma, Model modelo){

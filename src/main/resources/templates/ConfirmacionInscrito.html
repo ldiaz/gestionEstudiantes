@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="page">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Test</title>
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+        
+    </head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/HomeUsuario">Home</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<!-- 	<form th:action="@{/programas/{idEstudiantePrograma}/confirmar(idEstudiantePrograma=${estudianteprograma.id})}" th:object="${estudiante_programa}" method="post">	 -->
+	<form th:action="@{/HomeUsuario}" method="get">
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<h2 align = "Center"> Se ha inscrito correctamente </h2>
+	
+	<br></br>
+	<br></br>
+	<div>	
+		<p align = "Center">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+			<input class="btn btn-default btn-lg" type="submit" role="button" value="Aceptar" />					
+		</p>		
+	</div>
+	</form>
+</div>
+	
+</body>
+</html>

@@ -129,7 +129,7 @@ public class ControladorEvento {
 		
 		servInsEvento.crearEstudianteEvento(EE);		
 		
-		return "Home";
+		return "ConfirmacionInscrito";
 	}
 	
 
