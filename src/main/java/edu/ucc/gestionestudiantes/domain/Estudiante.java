@@ -9,6 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -34,9 +35,11 @@ public class Estudiante {
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaNacimiento;
 	
-	@Column(name="email")
+	@Column(unique=true, name="email")
+	@Email	
 	@NotEmpty(message = "Por favor digite su correo")
 	private String email;
+	
 	
 	@NotEmpty(message = "Por favor digite su contraseña")
 	private String Contrasena;

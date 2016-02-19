@@ -26,11 +26,67 @@
       <a class="navbar-brand" href="/Home">Home</a>
     </div>
   </div>
-</nav>		
-		
+</nav>
+
+  <script type="text/javascript">
+  function RevisarFormulario(formularioEstudiante)
+  {
+    if(form.nombre.value == "") {
+      alert("Error: El nombre de usuario no debe estar en blanco!");
+      form.username.focus();
+      return false;
+    }
+    re = /^\w+$/123456789;
+    if(!re.test(form.nombre.value)) {
+      alert("Error: El nombre de usuario solo adminte letras!");
+      form.nombre.focus();
+      return false;
+    }
+
+    if(form.contrasena.value != "" && form.contrasena.value == form.contrasena2.value) {
+      if(form.contrasena.value.length < 6) {
+        alert("Error: La contraseña debe contener al menos 6 caracteres!");
+        form.contrasena.focus();
+        return false;
+      }
+      if(form.contrasena.value == form.nombre.value) {
+        alert("Error: La contraseña no puede ser igual al nombre!");
+        form.contrasena.focus();
+        return false;
+      }
+      re = /[0-9]/;
+      if(!re.test(form.contrasena.value)) {
+        alert("Error: La contraseña debe contener almenos un numero");
+        form.contrasena.focus();
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: La contraseña debe contener al menos una letra minuscula!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[A-Z]/;
+      if(!re.test(form.contrasena.value)) {
+        alert("Error: La contraseña debe contener al menos una letra mayuscula!");
+        form.contrasena.focus();
+        return false;
+      }
+    } else {
+      alert("Error: Por favor confirme que ingreso correctamente la confirmación de la contraseña!");
+      form.contrasena.focus();
+      return false;
+    }
+    
+    alert("Ha ingresado una contraseña correcta: " + form.contrasena.value);
+    return true;
+  }
+  
+  </script>		  
+	
     <h1>Formulario de registro de estudiante</h1>
 	<div class="container">	
-	<form th:action="@{/estudiantesss/crear}" th:object="${estudiante}" method="post">
+	<form name="formularioEstudiante" th:action="@{/estudiantesss/crear}" th:object="${estudiante}" method="post" onsubmit="return RevisarFormulario(this);">
 		
 		<div class="form-group">
 		    <label for="nombre">Nombre estudiante:</label>
@@ -58,7 +114,7 @@
 
 		<div class="form-group">
 				<label for="email">correo electrónico:</label> <input
-					class="form-control" type="text" name="email" value=""
+					class="form-control" type="email" placeholder="Ingrese un correo valido" name="email" value=""
 					th:field="*{email}" />
 		</div>
 
@@ -66,16 +122,26 @@
 				<label for="contrasena">contrasena:</label> 
 				<input class="form-control" type="password" name="contrasena" value="" th:field="*{Contrasena}" />
 		</div>
+		
+		<div class="form-group">
+				<label for="Confirme la contraseña">contrasena:</label> 
+				<input class="form-control" type="password" name="contrasena2" value=""/>
+		</div>
 
 		<div class="form-group">
 				<label for="fechaNacimiento">fecha de nacimiento:</label> 
-				<input class="form-control" type="date" name="fechNacimiento" min="1920-01-01" max="2010-01-01" value="" th:field="*{fechaNacimiento}" />
+				<input class="form-control" type="date" name="fechNacimiento" min="1920-01-01" max="2016-01-01" placeholder="La fecha no es valida" value="" th:field="*{fechaNacimiento}" />
 		</div>
 <!-- 		 min="1920-01-01" max="2010-01-01" 	 -->
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>		
 		<input class="btn btn-default" type="submit" value="Enviar" />
 	</form>
 	</div>
+	
+	
+
+
+
 	
 <!-- 	function cambiaf_a_mysql($fecha){ -->
 <!-- ereg( "([0-9]{1,2})/([0-9]{1,2})/([0-9]{2,4})", $fecha, $mifecha); -->

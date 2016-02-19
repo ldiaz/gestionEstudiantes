@@ -37,7 +37,7 @@
 	<table style="margin: 0 auto;">
 		<tr>
 			<td>Numero identificacion: </td>
-			<td th:number="${estudiante.numeroIdentificacion}"></td>
+			<td th:text="${estudiante.numeroIdentificacion}"></td>
 		</tr>
 		
 		<tr>
@@ -57,7 +57,7 @@
 		
 		<tr>
 			<td>Fecha Nacimiento: </td>
-			<td th:date="${estudiante.fechaNacimiento}"></td>
+			<td th:text="${estudiante.fechaNacimiento}"></td>
 		</tr>
 		
 		<tr>
@@ -67,7 +67,7 @@
 		
 		<tr>
 			<td>Contraseña</td>
-			<td th:text="${estudiante.Contrasena}"></td>
+			<td>**********</td>
 		</tr>		
 		
 	</table>
