@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+     
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>reporteGeneralPrograma</title>
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+    <script type="text/javascript" src="/validacionEstudiante.js"></script>
+    
+	<style>
+		.button {
+  			display: inline-block;
+  			border-radius: 4px;
+  			background-color: #f4511e;
+  			border: none;
+  			color: #FFFFFF;
+  			text-align: center;
+  			font-size: 12px;
+  			padding: 10px;
+  			width: 100px;
+  			transition: all 0.5s;
+  			cursor: pointer;
+  			margin: 5px;
+  		}
+
+		.button span {
+  			cursor: pointer;
+  			display: inline-block;
+  			position: relative;
+  			transition: 0.5s;
+  		}
+
+		.button span:after {
+  			content: '»';
+  			position: absolute;
+  			opacity: 0;
+  			top: 0;
+  			right: -10px;
+  			transition: 0.5s;
+		}
+
+		.button:hover span {
+ 			padding-right: 15px;
+		}
+
+		.button:hover span:after {
+  			opacity: 1;
+  			right: 0;
+		}
+
+		a.tooltipDemo {
+			position: relative;
+    		display: inline;
+		}
+
+		a.tooltipDemo span:before {
+    		content: '';
+    		position: absolute;
+    		top: 30%;
+    		right: 100%;
+    		margin-top: -10px;
+    		width: 0;
+    		height: 0;
+    		border-right: 10px solid #ccc;
+    		border-top: 10px solid transparent;
+    		border-bottom: 10px solid transparent;
+		}
+
+		a.tooltipDemo span:after {
+    		content: '';
+    		position: absolute;
+    		top: 30%;
+    		right: 100%;
+    		margin-top: -8px;
+    		width: 0;
+    		height: 0;
+    		border-right: 8px solid #fdfdfd;
+    		border-top: 8px solid transparent;
+    		border-bottom: 8px solid transparent;
+		}
+
+	</style>
+</head>
+
+<body th:fragment="content" style="margin:0px;; background-image: url(Imagenes/fondogris.jpg);background-color:#dddde2" bgcolor="#dddde2" onload="">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/Home">Home</a>
+			</div>
+		</div>
+	</nav>
+	
+	<div style="width: 100%; margin: 0px auto; padding-top: 6px; text-align: center; min-height: 200px; min-width: 900px;  " align="center">
+		<div style="width:902px;margin:0 auto;margin-left:auto;margin-right:auto;" align="center">
+			<table cellpadding="0" cellspacing="0" align="center">
+			<tbody>
+			<tr>
+				<td valign="top">
+					<div align="top" style="height:370px;clear:both;float:left;color:#555;border:1px solid #777;width:900px; background-image: url(Imagenes/fondo.png); no-repeat ;background-color:#fff;" >
+						<br/><br/>
+						<div style="width: 250px; font-size: 16px; color: rgb(255, 255, 255); line-height: 52px; background-image: url(Imagenes/cuadrotitulo.png); no-repeat;">&nbsp; &nbsp; Reporte General por Programa
+						</div>
+						<div class="a" style="float: left; position: relative; left: -48px; top: -52px; width: 48px; height: 82px; background-image: url(Imagenes/triangulo.png); no-repeat;">
+						&nbsp;</div>
+						<br/>
+						<form name="reporteGeneralPrograma" th:action="@{/reporteGeneralPrograma}" th:object="${reporteGeneralPrograma}" method="post" onsubmit="return RevisarFormulario(this);">
+							<table cellpadding="0" cellspacing="0" align="left" >
+							<tbody>
+								<tr>
+									<td width="250" height="181" align="center" valign="top">
+  									<img src="Imagenes/ucc.jpg" width="190" height="171" />
+  									</td>
+  										
+  									<td width="43" nowrap="">
+  										<table cellpadding="1" cellspacing="0">
+  										<tbody>
+   									
+   										<tr>	
+   										<td width="155" align="right"  style="cursor:pointer;font-size:12px;">Programa:&nbsp;
+   										</td>
+   										<td width="202">
+   											<a class="tooltipDemo" style="float: right;">
+												<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
+											</a>
+											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
+												<option th:each="programa : ${programa}" th:value="${programa.numeroIdentificacion}" th:text="${programa.nombre}"> </option>
+												<option value="">todos</option>
+											</select>
+  										</td>
+   										</tr>
+   										
+   										<tr>
+   										<td align="right" style="width:155px;cursor:pointer;font-size:12px;">Tipo Archivo: &nbsp;
+   										</td>
+   										
+   										<td>
+   											<a class="tooltipDemo" style="float: right;">
+											<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
+											</a>
+   											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
+												<option value="1">TXT</option>
+												<option value="2">PDF</option>
+												<option value="3">EXCEL</option>
+											</select>
+   										</td>
+   										</tr>   										
+   										<tr>
+										<td align="right" style="cursor:pointer; font-size:14px; ">&nbsp;	
+										</td>
+										<td>
+											<button class="button" style="vertical-align:center">
+											<span>Descargar </span>
+											</button>
+											<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>		
+											<input class="btn btn-default" type="submit" value="Enviar" />
+										</td>
+										</tr>
+										</tbody>
+  										</table>
+  										<p style="font-size:1px;padding-top:10px;">
+    									<img src="Imagenes/linea.png" width="310" height="3" border="0" />
+    									</p>
+  									</td>
+								</tr>
+							</tbody>
+							</table>
+						</form>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+	</div>	
+</body>
+</html>
