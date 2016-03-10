@@ -3,9 +3,13 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value="ZXN0dWRpYW50ZSAsMTUsMTUsODk3ODEyODgtOWJlMS00ZTQxLWIxNmQtZjVjYjI5ZjkwMTc5Ow=="/>
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="86"/>
-	<parameter name="programa" class="java.lang.Integer"/>
+	<property name="ireport.x" value="200"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<parameter name="programa" class="java.lang.String"/>
+	<parameter name="imagenucc" class="java.lang.String"/>
+	<parameter name="imagenlinea" class="java.lang.String"/>
+	<parameter name="cuadros" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT estudiante.numero_identificacion, CONCAT( estudiante.nombre,  " ", estudiante.apellido ) AS nombre, estudiante.email,(select programa.nombre as programa from programa where programa.numero_identificacion=$P{programa}) as programa
 FROM estudiante
@@ -30,19 +34,11 @@ ORDER BY estudiante.apellido]]>
 				<reportElement x="10" y="13" width="130" height="117" uuid="311d4776-5052-4f02-b3d4-fc218b27afaa">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenucc}]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="140" y="85" width="350" height="10" uuid="4c248053-0a16-410c-8a03-940741c9b4ff"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="446" y="13" width="125" height="117" uuid="52fa5b20-839d-430e-9b40-b8ea8c3a4da7">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+				<reportElement x="140" y="91" width="350" height="10" uuid="4c248053-0a16-410c-8a03-940741c9b4ff"/>
+				<imageExpression><![CDATA[$P{imagenlinea}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="140" y="63" width="290" height="16" uuid="aa92d153-643e-4a05-8c8c-833cad4a5d40"/>
@@ -57,6 +53,14 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<text><![CDATA[REPORTE POR HOMOLOGACION]]></text>
 			</staticText>
+			<image>
+				<reportElement x="446" y="13" width="125" height="117" uuid="52fa5b20-839d-430e-9b40-b8ea8c3a4da7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{cuadros}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>

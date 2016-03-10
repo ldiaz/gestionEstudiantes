@@ -13,6 +13,29 @@ import edu.ucc.gestionestudiantes.domain.Programa;
 import edu.ucc.gestionestudiantes.servicios.ServicioEvento;
 import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+ 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.core.io.ClassPathResource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
 public class controladorGeneralReportes{
@@ -22,6 +45,11 @@ public class controladorGeneralReportes{
 	
 	@Autowired
 	private ServicioEvento servEvento;
+	
+	@Autowired
+	private DataSource dataSource;
+	
+	private static final int BUFFER_SIZE = 4096;
 	
 	@RequestMapping(value="reporteGeneralPrograma",method=RequestMethod.GET)
 	public String vistaGeneralPrograma(Model modelo){
@@ -94,4 +122,54 @@ public class controladorGeneralReportes{
 		System.out.println("Obteniendo el formulario");
 		return "reporteProgramasEventosInhabilitados";	
 	}
+	
+	@RequestMapping(value="/download.do",method = RequestMethod.GET)
+    public String doDownload(HttpServletRequest request,
+            HttpServletResponse response, @RequestParam(value="pro", required=false) String pro, Model modelo) throws IOException {
+		ClassPathResource jasperpdf= new ClassPathResource("jasper/");
+    	try{
+    		Map<String, Object> parameters = new HashMap<String, Object>();
+    		  parameters.put("programa","1");
+		      parameters.put("imagenucc", "Imagenes/ucc.png");
+		      parameters.put("imagenlinea", "Imagenes/linea.png");
+		      parameters.put("cuadros", "Imagenes/cuadrotitulo.png");
+		      ClassPathResource jasperXML= new ClassPathResource("jasper/reporteHomologaciones.jrxml");
+		       System.out.println("ROLLBACK EJECUTADO"+jasperXML);
+		        JasperReport report= JasperCompileManager.compileReport(jasperXML.getInputStream());
+		        JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource.getConnection());
+		        System.out.println("ROLLBACK EJECUTADO");
+		        JasperExportManager.exportReportToPdfFile(print,jasperpdf.getFilename()+"reporteHomologaciones.pdf");
+		        JasperViewer.viewReport(print, false);
+		        System.out.println("ROLLBACK EJECUTADO" + jasperpdf.getPath());
+    	}catch (Exception e) {
+		      e.printStackTrace();
+		    }
+    	
+    	String filePath = "reporteHomologaciones.pdf";
+        ServletContext context = request.getServletContext();
+        String appPath = jasperpdf.getFilename();//context.getRealPath("");
+        System.out.println("appPath = " + appPath);
+        String fullPath = appPath + filePath;      
+        File downloadFile = new File(fullPath);
+        FileInputStream inputStream = new FileInputStream(downloadFile);
+        String mimeType = context.getMimeType(fullPath);
+        if (mimeType == null) {
+            mimeType = "application/octet-stream";
+        }
+        System.out.println("MIME type: " + mimeType);
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+        OutputStream outStream = response.getOutputStream();
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+        inputStream.close();
+        outStream.close();
+        return "formularioEstudiante1";
+    }
 }
