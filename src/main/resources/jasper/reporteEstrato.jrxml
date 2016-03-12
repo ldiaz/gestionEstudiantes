@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-02-16T20:03:21 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEstrato" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac15b269-ebd2-4f36-912f-7334eb0c5681">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
 	<parameter name="estrato" class="java.lang.String"/>
+	<parameter name="imagenucc" class="java.lang.String"/>
+	<parameter name="imagenlinea" class="java.lang.String"/>
+	<parameter name="cuadros" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT estudiante.numero_identificacion, concat(estudiante.nombre, " ", estudiante.apellido) as nombre, estudiante.email, null as estrato from estudiante 
-ORDER BY estudiante.apellido
-]]>
+ORDER BY estudiante.apellido]]>
 	</queryString>
 	<field name="numero_identificacion" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
@@ -19,11 +23,11 @@ ORDER BY estudiante.apellido
 		<band height="130" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="130" height="130" uuid="fe440439-a3d7-4381-95b2-c34b292234f4"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenucc}]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="141" y="85" width="350" height="12" uuid="3768e7a4-985e-487d-867f-f6f9ab9afa0a"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenlinea}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="141" y="61" width="279" height="17" uuid="0748f9a1-0946-42ef-b7cb-b3581ec71c97"/>
@@ -43,7 +47,7 @@ ORDER BY estudiante.apellido
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{cuadros}]]></imageExpression>
 			</image>
 		</band>
 	</title>

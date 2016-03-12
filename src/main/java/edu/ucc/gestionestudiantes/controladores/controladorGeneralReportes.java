@@ -124,28 +124,58 @@ public class controladorGeneralReportes{
 	}
 	
 	@RequestMapping(value="/download.do",method = RequestMethod.GET)
-    public String doDownload(HttpServletRequest request,
-            HttpServletResponse response, @RequestParam(value="pro", required=false) String pro, Model modelo) throws IOException {
-		ClassPathResource jasperpdf= new ClassPathResource("jasper/");
+    public String doDownload(@RequestParam(value="pro", required= false)String pro,
+    						@RequestParam(value= "fomato", required= false)String formato,
+    						@RequestParam(value="reporte", required=false) String reporte,
+    						@RequestParam(value="event", required=false) String event,
+    						@RequestParam(value="estrato", required=false) String estrato,
+    						HttpServletRequest request,
+    						HttpServletResponse response, Model modelo) throws IOException {
+							ClassPathResource jasperpdf= new ClassPathResource("jasper/");
+		String nombreR = "";					
+		if(reporte.equals("1")){
+			nombreR = "reporteGeneralUsuarios";
+		}if(reporte.equals("2"))
+		{
+			nombreR="reporteHomologaciones";
+		}
+		if(reporte.equals("3"))
+		{
+			nombreR="reporteEstrato";
+		}
+		if(reporte.equals("4")){
+		nombreR="reporteEvento";
+		}
+		if(reporte.equals("5")){
+			nombreR="reporteEtapaEvento";
+			}
+		if(reporte.equals("6")){
+			nombreR="reporteEtapaPrograma";
+			}
+		if(reporte.equals("7")){
+			nombreR="reporteProceso";
+			}
     	try{
     		Map<String, Object> parameters = new HashMap<String, Object>();
-    		  parameters.put("programa","1");
+    		  parameters.put("programa",pro);
+    		  parameters.put("evento",event);
+    		  parameters.put("estrato",estrato);
 		      parameters.put("imagenucc", "Imagenes/ucc.png");
 		      parameters.put("imagenlinea", "Imagenes/linea.png");
-		      parameters.put("cuadros", "Imagenes/cuadrotitulo.png");
-		      ClassPathResource jasperXML= new ClassPathResource("jasper/reporteHomologaciones.jrxml");
+		      parameters.put("cuadros", "Imagenes/cuadros.png");
+		      ClassPathResource jasperXML= new ClassPathResource("jasper/"+nombreR+".jrxml");
 		       System.out.println("ROLLBACK EJECUTADO"+jasperXML);
 		        JasperReport report= JasperCompileManager.compileReport(jasperXML.getInputStream());
 		        JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource.getConnection());
 		        System.out.println("ROLLBACK EJECUTADO");
-		        JasperExportManager.exportReportToPdfFile(print,jasperpdf.getFilename()+"reporteHomologaciones.pdf");
+		        JasperExportManager.exportReportToPdfFile(print,jasperpdf.getFilename()+nombreR+".pdf");
 		        JasperViewer.viewReport(print, false);
 		        System.out.println("ROLLBACK EJECUTADO" + jasperpdf.getPath());
     	}catch (Exception e) {
 		      e.printStackTrace();
 		    }
     	
-    	String filePath = "reporteHomologaciones.pdf";
+    	String filePath = nombreR+".pdf";
         ServletContext context = request.getServletContext();
         String appPath = jasperpdf.getFilename();//context.getRealPath("");
         System.out.println("appPath = " + appPath);

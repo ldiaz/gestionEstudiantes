@@ -114,7 +114,7 @@
 						<div class="a" style="float: left; position: relative; left: -48px; top: -52px; width: 48px; height: 82px; background-image: url(Imagenes/triangulo.png); no-repeat;">
 						&nbsp;</div>
 						<br/>
-						<form name="reporteGeneralPrograma" th:action="@{/reporteGeneralPrograma}" th:object="${reporteGeneralPrograma}" method="post" onsubmit="return RevisarFormulario(this);">
+						<form action="download.do" method= "get" >
 							<table cellpadding="0" cellspacing="0" align="left" >
 							<tbody>
 								<tr>
@@ -133,7 +133,7 @@
    											<a class="tooltipDemo" style="float: right;">
 												<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
 											</a>
-											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
+											<select name="pro" style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
 												<option th:each="programa : ${programa}" th:value="${programa.numeroIdentificacion}" th:text="${programa.nombre}"> </option>
 												<option value="">todos</option>
 											</select>
@@ -148,20 +148,17 @@
    											<a class="tooltipDemo" style="float: right;">
 											<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
 											</a>
-   											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
-												<option value="1">TXT</option>
-												<option value="2">PDF</option>
-												<option value="3">EXCEL</option>
+   											<select name="formato" style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
+												<option value="1">PDF</option>												
 											</select>
    										</td>
    										</tr>   										
    										<tr>
-										<td align="right" style="cursor:pointer; font-size:14px; ">&nbsp;	
+										<td align="right" style="cursor:pointer; font-size:5px; ">&nbsp;	
+										<input type="text" value="1" name="reporte" style="visibility:hidden"/>
 										</td>
 										<td>
-											<button class="button" style="vertical-align:center">
-											<span>Descargar </span>
-											</button>											
+											<input class="button" type="submit" name="action" value="Descargar"/>																				
 										</td>
 										</tr>
 										</tbody>

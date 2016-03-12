@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteHomologaciones" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f94f62d-d4d8-4838-803a-0d8dc845f8e2">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteHomologaciones" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f94f62d-d4d8-4838-803a-0d8dc845f8e2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value="ZXN0dWRpYW50ZSAsMTUsMTUsODk3ODEyODgtOWJlMS00ZTQxLWIxNmQtZjVjYjI5ZjkwMTc5Ow=="/>
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="200"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
 	<parameter name="programa" class="java.lang.String"/>

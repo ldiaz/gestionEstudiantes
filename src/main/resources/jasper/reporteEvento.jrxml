@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-02-16T20:03:20 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEvento" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="602c3878-4484-4525-a670-098408cc7d4e">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="evento" class="java.lang.Integer"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="evento" class="java.lang.String"/>
+	<parameter name="imagenucc" class="java.lang.String"/>
+	<parameter name="imagenlinea" class="java.lang.String"/>
+	<parameter name="cuadros" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select evento.nombre as evento, estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido) as nombre, estudiante.email
-from evento 
-inner join estudiante_evento on evento.numero_identificacion=estudiante_evento.id_evento
-inner join estudiante on estudiante.numero_identificacion=estudiante_evento.id_estudiante
-ORDER BY apellido]]>
+		<![CDATA[SELECT estudiante.numero_identificacion, CONCAT( estudiante.nombre,  " ", estudiante.apellido ) AS nombre, estudiante.email,(select programa.nombre as programa from programa where programa.numero_identificacion=$P{evento}) as evento
+FROM estudiante
+ORDER BY estudiante.apellido]]>
 	</queryString>
-	<field name="numero_identificacion" class="java.lang.Integer"/>
-	<field name="nombre" class="java.lang.String"/>
-	<field name="email" class="java.lang.String"/>
-	<field name="evento" class="java.lang.String"/>
+	<field name="numero_identificacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="evento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -25,11 +35,11 @@ ORDER BY apellido]]>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenucc}]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="160" y="85" width="300" height="9" uuid="7eba340b-a46c-49df-b42d-ae654d3c8d56"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenlinea}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="140" y="60" width="300" height="20" uuid="85869805-b701-4482-bc38-5faf5f0275ac"/>
@@ -43,7 +53,7 @@ ORDER BY apellido]]>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{cuadros}]]></imageExpression>
 			</image>
 		</band>
 	</title>
