@@ -8,24 +8,35 @@
 	<parameter name="imagenucc" class="java.lang.String"/>
 	<parameter name="imagenlinea" class="java.lang.String"/>
 	<parameter name="cuadros" class="java.lang.String"/>
+	<parameter name="etapa" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT distinct e.nombre as evento, estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email
+		<![CDATA[SELECT DISTINCT numero_identificacion, nombre, email, evento
+FROM (
+SELECT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, e.nombre AS evento
 FROM estudiante
-JOIN estudiante_evento ON estudiante_evento.id_estudiante = estudiante.numero_identificacion
- JOIN (
-SELECT evento.numero_identificacion AS evento , evento.nombre as nombre
-FROM evento
-WHERE evento.numero_identificacion =$P{evento} and $P{evento} is not null
-union all
-SELECT evento.numero_identificacion AS evento, evento.nombre as nombre
-FROM evento
-where $P{evento} is null
-) AS e ON e.evento = estudiante_evento.id_evento]]>
+JOIN estudiante_evento ON estudiante_evento.estudiante = estudiante.numero_identificacion
+JOIN evento e ON e.numero_identificacion = estudiante_evento.evento
+WHERE e.numero_identificacion =$P{evento}  AND $P{evento} IS NULL
+UNION ALL
+SELECT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, e.nombre AS evento
+FROM estudiante
+JOIN estudiante_evento ON estudiante_evento.estudiante = estudiante.numero_identificacion
+JOIN evento e ON e.numero_identificacion = estudiante_evento.evento
+WHERE $P{evento}="" OR $P{evento} IS NULL
+) AS TODO]]>
 	</queryString>
-	<field name="numero_identificacion" class="java.lang.Integer"/>
-	<field name="nombre" class="java.lang.String"/>
-	<field name="email" class="java.lang.String"/>
-	<field name="evento" class="java.lang.String"/>
+	<field name="numero_identificacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="evento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
 		<band height="130" splitType="Stretch">
 			<image>
@@ -54,7 +65,7 @@ where $P{evento} is null
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[REPORTE POR ETAPA DE INSCRIPCIÓN A EVENTO]]></text>
+				<text><![CDATA[REPORTE POR ETAPA DE PRE-INSCRIPCIÓN A EVENTO]]></text>
 			</staticText>
 		</band>
 	</title>

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-02-17T16:16:45 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repoteProceso" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="538807f4-37cd-42f4-bcb4-782d33155a58">
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="proceso" class="java.lang.Integer"/>
+	<parameter name="imagenucc" class="java.lang.String"/>
+	<parameter name="imagenlinea" class="java.lang.String"/>
+	<parameter name="cuadros" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select programa.nombre, programa.proposito_formacion, "programa" AS proceso
 FROM programa
@@ -31,18 +36,18 @@ WHERE evento.habilitado =1 and  $P{proceso} is  null]]>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenucc}]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="140" y="87" width="320" height="14" uuid="4890a798-cc4a-4bf2-aa0d-0ff528117c13"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenlinea}]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="440" y="1" width="130" height="130" uuid="82e61698-021f-4e13-88ef-f47c3b17518d">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{cuadros}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="140" y="47" width="290" height="37" uuid="5374fdb6-7e0c-452a-81b5-382d964b9777"/>

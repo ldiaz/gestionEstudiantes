@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-02-17T16:39:15 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEtapaPrograma" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05989c9c-2e65-42b1-8054-a92df5483077">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEtapaPrograma" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05989c9c-2e65-42b1-8054-a92df5483077">
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="programa" class="java.lang.Integer"/>
+	<parameter name="imagenucc" class="java.lang.String"/>
+	<parameter name="imagenlinea" class="java.lang.String"/>
+	<parameter name="cuadros" class="java.lang.String"/>
+	<parameter name="etapa" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT distinct p.nombre as programa, estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email
+		<![CDATA[SELECT DISTINCT numero_identificacion, nombre, email, programa
+FROM (
+
+SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, programa.nombre AS programa
 FROM estudiante
-JOIN estudiante_programa ON estudiante_programa.id_estudiante = estudiante.numero_identificacion
- JOIN (
-SELECT programa.numero_identificacion AS programa , programa.nombre as nombre
-FROM programa
-WHERE programa.numero_identificacion =1 and $P{programa} is not null
-union all
-SELECT programa.numero_identificacion AS programa, programa.nombre as nombre
-FROM programa
-where $P{programa} is null
-) AS p ON p.programa = estudiante_programa.id_programa]]>
+JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
+JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
+WHERE programa.numero_identificacion =$P{programa} AND $P{programa} IS NOT NULL
+UNION ALL
+SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, programa.nombre AS programa
+FROM estudiante
+JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
+JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
+WHERE $P{programa}=" "
+) AS TODO]]>
 	</queryString>
-	<field name="numero_identificacion" class="java.lang.Integer"/>
-	<field name="nombre" class="java.lang.String"/>
-	<field name="email" class="java.lang.String"/>
-	<field name="programa" class="java.lang.String"/>
+	<field name="numero_identificacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="programa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
 		<band height="133" splitType="Stretch">
 			<image>
@@ -28,11 +45,11 @@ where $P{programa} is null
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/ucc.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenucc}]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="140" y="88" width="320" height="20" uuid="1ecbe230-9b0c-4a5e-9108-8c75397024d6"/>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/linea.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagenlinea}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="130" y="47" width="310" height="41" uuid="ba1b7710-d28e-48cc-b81b-d4d4aad33097"/>
@@ -46,7 +63,7 @@ where $P{programa} is null
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/User/Desktop/febrero 2016/cuadros.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{cuadros}]]></imageExpression>
 			</image>
 		</band>
 	</title>

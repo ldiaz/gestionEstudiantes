@@ -46,7 +46,7 @@ ORDER BY estudiante.apellido]]>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[REPORTE POR EVENTO]]></text>
+				<text><![CDATA[REPORTE GENERAL POR EVENTO]]></text>
 			</staticText>
 			<image>
 				<reportElement x="446" y="0" width="125" height="130" uuid="f9cf3083-ae3e-447c-8d54-0228197d00de">

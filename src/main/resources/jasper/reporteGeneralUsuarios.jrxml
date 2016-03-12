@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d11680bb-28a8-44ff-a19a-ac3f9b55cab5">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
@@ -27,9 +27,21 @@
 	<parameter name="imagenlinea" class="java.lang.String"/>
 	<parameter name="cuadros" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT estudiante.numero_identificacion, CONCAT( estudiante.nombre,  " ", estudiante.apellido ) AS nombre, estudiante.email,(select programa.nombre as programa from programa where programa.numero_identificacion=$P{programa}) as programa
+		<![CDATA[SELECT DISTINCT numero_identificacion, nombre, email, programa
+FROM (
+
+SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, programa.nombre AS programa
 FROM estudiante
-ORDER BY estudiante.apellido]]>
+JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
+JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
+WHERE programa.numero_identificacion =$P{programa} AND $P{programa} IS NOT NULL
+UNION ALL
+SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, programa.nombre AS programa
+FROM estudiante
+JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
+JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
+WHERE $P{programa}=" " or $P{programa} is null
+) AS TODO]]>
 	</queryString>
 	<field name="numero_identificacion" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -73,36 +85,14 @@ ORDER BY estudiante.apellido]]>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[REPORTE GENERAL DE USUARIO]]></text>
+				<text><![CDATA[REPORTE GENERAL POR PROGRAMA]]></text>
 			</staticText>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="21">
-			<staticText>
-				<reportElement x="370" y="0" width="84" height="20" uuid="f8108a26-93b0-45a0-a41e-9c625547db69">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[PROGRAMA:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="454" y="0" width="100" height="20" uuid="2cd6bda9-820b-4c9a-8c97-b78c5fb6e9bd">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{programa}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageHeader>
 	<columnHeader>
-		<band height="21">
+		<band height="20">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="130" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f05939d8-de83-4383-8042-1c477e5ee739">
+				<reportElement mode="Opaque" x="0" y="0" width="94" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f05939d8-de83-4383-8042-1c477e5ee739">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -117,7 +107,7 @@ ORDER BY estudiante.apellido]]>
 				<text><![CDATA[Identificador]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="130" y="0" width="245" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2fb2b5a4-8ed2-4ffd-9bd9-6609e96f99d5">
+				<reportElement mode="Opaque" x="94" y="0" width="194" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2fb2b5a4-8ed2-4ffd-9bd9-6609e96f99d5">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -132,7 +122,7 @@ ORDER BY estudiante.apellido]]>
 				<text><![CDATA[Nombre usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="375" y="0" width="180" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8c94e63b-8fd2-4ec0-9cd7-5f0bbb66e064">
+				<reportElement mode="Opaque" x="288" y="0" width="132" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8c94e63b-8fd2-4ec0-9cd7-5f0bbb66e064">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -144,28 +134,52 @@ ORDER BY estudiante.apellido]]>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[correo]]></text>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="0" width="135" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="632dfb5e-7ef9-444a-a014-9bcb44c97779">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="30">
-			<textField>
-				<reportElement x="0" y="0" width="130" height="30" uuid="3846b67e-7ba0-4629-9120-6091d64b63c7"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="94" height="30" uuid="3846b67e-7ba0-4629-9120-6091d64b63c7"/>
 				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="0" width="244" height="30" uuid="5be8a486-a86b-48bb-99a5-3f2419c5b491"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="0" width="194" height="30" uuid="5be8a486-a86b-48bb-99a5-3f2419c5b491"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="375" y="0" width="179" height="30" uuid="322d93b7-cd41-444c-9af1-6f0a7ca97bb1"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="288" y="0" width="132" height="30" uuid="322d93b7-cd41-444c-9af1-6f0a7ca97bb1"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="0" width="134" height="30" uuid="2cd6bda9-820b-4c9a-8c97-b78c5fb6e9bd">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{programa}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<lastPageFooter>
-		<band height="47">
+		<band height="32">
 			<textField>
 				<reportElement x="354" y="2" width="100" height="30" uuid="9a15479b-7547-42f1-8a52-795aa9331d29"/>
 				<textElement textAlignment="Right"/>

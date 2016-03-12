@@ -129,6 +129,7 @@ public class controladorGeneralReportes{
     						@RequestParam(value="reporte", required=false) String reporte,
     						@RequestParam(value="event", required=false) String event,
     						@RequestParam(value="estrato", required=false) String estrato,
+    						@RequestParam(value="etapa", required=false) String etapa,
     						HttpServletRequest request,
     						HttpServletResponse response, Model modelo) throws IOException {
 							ClassPathResource jasperpdf= new ClassPathResource("jasper/");
