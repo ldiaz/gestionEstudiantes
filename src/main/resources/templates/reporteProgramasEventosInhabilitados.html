@@ -128,14 +128,14 @@
    									
    										<tr>	
    										<td width="155" align="left"  style="cursor:pointer;font-size:12px;">
-   										<input type="checkbox" name="programa"/>
+   										<input  type="checkbox" name="procesop"/>
    										Programa:&nbsp;
    										</td>
    										<td width="202">
    											<a class="tooltipDemo" style="float: right;">
 												<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
 											</a>
-											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
+											<select name="pro" style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
 												<option th:each="programa : ${programa}" th:value="${programa.numeroIdentificacion}" th:text="${programa.nombre}"> </option>
 												<option value="">todos</option>
 											</select>
@@ -144,14 +144,14 @@
    										
    										<tr>	
    										<td width="155" align="left"  style="cursor:pointer;font-size:12px;">
-   										<input type="checkbox" name="evento"/>
+   										<input type="checkbox" name="procesoe"/>
    										Evento:&nbsp;
    										</td>
    										<td width="202">
    											<a class="tooltipDemo" style="float: right;">
 												<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
 											</a>
-											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
+											<select name="event" style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
 												<option th:each="evento : ${evento}" th:value="${evento.numeroIdentificacion}" th:text="${evento.nombre}"> </option>
 												<option value="">todos</option>
 											</select>

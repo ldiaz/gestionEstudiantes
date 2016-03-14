@@ -154,23 +154,60 @@ WHERE $P{programa}=" " or $P{programa} is null
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="30">
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="94" height="30" uuid="3846b67e-7ba0-4629-9120-6091d64b63c7"/>
+		<band height="16">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="94" height="16" uuid="3846b67e-7ba0-4629-9120-6091d64b63c7"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="94" y="0" width="194" height="30" uuid="5be8a486-a86b-48bb-99a5-3f2419c5b491"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="94" y="0" width="194" height="16" uuid="5be8a486-a86b-48bb-99a5-3f2419c5b491"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="288" y="0" width="132" height="30" uuid="322d93b7-cd41-444c-9af1-6f0a7ca97bb1"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="288" y="0" width="132" height="16" uuid="322d93b7-cd41-444c-9af1-6f0a7ca97bb1"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="420" y="0" width="134" height="30" uuid="2cd6bda9-820b-4c9a-8c97-b78c5fb6e9bd">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="420" y="0" width="134" height="16" uuid="2cd6bda9-820b-4c9a-8c97-b78c5fb6e9bd">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textElement>
 					<font size="12"/>
 				</textElement>

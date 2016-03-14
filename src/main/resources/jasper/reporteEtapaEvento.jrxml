@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEtapaEvento" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1f37e99a-b21c-4c1e-bd82-263bc6d9d34f">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
@@ -16,7 +16,7 @@ SELECT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudia
 FROM estudiante
 JOIN estudiante_evento ON estudiante_evento.estudiante = estudiante.numero_identificacion
 JOIN evento e ON e.numero_identificacion = estudiante_evento.evento
-WHERE e.numero_identificacion =$P{evento}  AND $P{evento} IS NULL
+WHERE e.numero_identificacion =$P{evento}  
 UNION ALL
 SELECT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, e.nombre AS evento
 FROM estudiante
@@ -55,7 +55,7 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 				<imageExpression><![CDATA[$P{cuadros}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="140" y="57" width="299" height="22" uuid="afbd10d1-ca5e-4d1a-905c-5dcac3ec1e12"/>
+				<reportElement x="130" y="47" width="316" height="32" uuid="afbd10d1-ca5e-4d1a-905c-5dcac3ec1e12"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -70,7 +70,7 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 		</band>
 	</title>
 	<columnHeader>
-		<band height="22" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="12027a21-192d-47c1-89bc-27937567bc47"/>
 				<box>
@@ -100,7 +100,7 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 				<text><![CDATA[Nombre usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="325" y="0" width="143" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="40918a6f-487b-4e21-a616-4ffff7131804">
+				<reportElement mode="Opaque" x="325" y="0" width="146" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="40918a6f-487b-4e21-a616-4ffff7131804">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -115,7 +115,7 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 				<text><![CDATA[correo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="468" y="0" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7e4e2d63-1892-4e69-a287-713a631d4d10">
+				<reportElement mode="Opaque" x="471" y="0" width="101" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7e4e2d63-1892-4e69-a287-713a631d4d10">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -133,8 +133,8 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="61d33b61-1540-4388-9235-432276d6814d">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="61d33b61-1540-4388-9235-432276d6814d">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
@@ -149,8 +149,8 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="100" y="0" width="225" height="20" uuid="136c5e74-828a-4576-9f63-728e8bd53914">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="100" y="0" width="225" height="20" uuid="136c5e74-828a-4576-9f63-728e8bd53914">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -165,8 +165,8 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="325" y="0" width="143" height="20" uuid="c200f1d6-1cc8-436f-8cd3-422b80988964">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="325" y="0" width="146" height="20" uuid="c200f1d6-1cc8-436f-8cd3-422b80988964">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -181,8 +181,8 @@ WHERE $P{evento}="" OR $P{evento} IS NULL
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="468" y="0" width="100" height="20" isPrintWhenDetailOverflows="true" uuid="8a761766-5a26-4175-b114-e629b10489b6">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="471" y="0" width="101" height="20" isPrintWhenDetailOverflows="true" uuid="8a761766-5a26-4175-b114-e629b10489b6">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>

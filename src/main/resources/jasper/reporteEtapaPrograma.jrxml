@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEtapaPrograma" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05989c9c-2e65-42b1-8054-a92df5483077">
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="programa" class="java.lang.Integer"/>
+	<parameter name="programa" class="java.lang.String"/>
 	<parameter name="imagenucc" class="java.lang.String"/>
 	<parameter name="imagenlinea" class="java.lang.String"/>
 	<parameter name="cuadros" class="java.lang.String"/>
@@ -17,13 +17,13 @@ SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " "
 FROM estudiante
 JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
 JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
-WHERE programa.numero_identificacion =$P{programa} AND $P{programa} IS NOT NULL
+WHERE programa.numero_identificacion =$P{programa}
 UNION ALL
 SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, programa.nombre AS programa
 FROM estudiante
 JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
 JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
-WHERE $P{programa}=" "
+WHERE $P{programa}=" " OR $P{programa} IS NULL
 ) AS TODO]]>
 	</queryString>
 	<field name="numero_identificacion" class="java.lang.Integer">
@@ -52,7 +52,7 @@ WHERE $P{programa}=" "
 				<imageExpression><![CDATA[$P{imagenlinea}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="130" y="47" width="310" height="41" uuid="ba1b7710-d28e-48cc-b81b-d4d4aad33097"/>
+				<reportElement x="130" y="47" width="316" height="41" uuid="ba1b7710-d28e-48cc-b81b-d4d4aad33097"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -68,7 +68,7 @@ WHERE $P{programa}=" "
 		</band>
 	</title>
 	<columnHeader>
-		<band height="21" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="33707c8d-0183-4ca1-9ec6-bc9e62ded1ef"/>
 				<box>
@@ -131,8 +131,8 @@ WHERE $P{programa}=" "
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="a53b7619-b801-446d-8dde-6591fb61a1a4">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="a53b7619-b801-446d-8dde-6591fb61a1a4">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
@@ -147,8 +147,8 @@ WHERE $P{programa}=" "
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="100" y="0" width="220" height="20" uuid="084536d5-0f50-40bd-a759-bf721f6628a6">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="100" y="0" width="220" height="20" uuid="084536d5-0f50-40bd-a759-bf721f6628a6">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
@@ -163,8 +163,8 @@ WHERE $P{programa}=" "
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="320" y="0" width="142" height="20" uuid="a239c4c4-cc69-4f6f-a6f6-6500ed7eaf58">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="320" y="0" width="142" height="20" uuid="a239c4c4-cc69-4f6f-a6f6-6500ed7eaf58">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
@@ -176,8 +176,8 @@ WHERE $P{programa}=" "
 				</box>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="462" y="0" width="110" height="20" uuid="ea2b9c5c-aa9e-47da-b0aa-216f2664599c">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="462" y="0" width="110" height="20" uuid="ea2b9c5c-aa9e-47da-b0aa-216f2664599c">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>

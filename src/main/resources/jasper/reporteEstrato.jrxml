@@ -109,8 +109,8 @@ ORDER BY estudiante.apellido]]>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="9cda1f24-ee9e-408a-ab41-864e3827be90"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="9cda1f24-ee9e-408a-ab41-864e3827be90"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
@@ -122,8 +122,8 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="120" y="0" width="198" height="20" isPrintWhenDetailOverflows="true" uuid="ca1fb6b6-86d8-4dea-afcf-3f54d7b46527"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="120" y="0" width="198" height="20" isPrintWhenDetailOverflows="true" uuid="ca1fb6b6-86d8-4dea-afcf-3f54d7b46527"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
@@ -135,8 +135,8 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="318" y="0" width="134" height="20" isPrintWhenDetailOverflows="true" uuid="3e75cf6a-93ee-4a96-8f9e-a236fde59787"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="318" y="0" width="134" height="20" isPrintWhenDetailOverflows="true" uuid="3e75cf6a-93ee-4a96-8f9e-a236fde59787"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
@@ -148,8 +148,8 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="452" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="4c66a098-394b-48d1-8073-c0cd3e96bd17"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="452" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="4c66a098-394b-48d1-8073-c0cd3e96bd17"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>

@@ -9,9 +9,20 @@
 	<parameter name="imagenlinea" class="java.lang.String"/>
 	<parameter name="cuadros" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT estudiante.numero_identificacion, CONCAT( estudiante.nombre,  " ", estudiante.apellido ) AS nombre, estudiante.email,(select programa.nombre as programa from programa where programa.numero_identificacion=$P{evento}) as evento
+		<![CDATA[SELECT DISTINCT numero_identificacion, nombre, email, evento
+FROM (
+SELECT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, e.nombre AS evento
 FROM estudiante
-ORDER BY estudiante.apellido]]>
+JOIN estudiante_evento ON estudiante_evento.estudiante = estudiante.numero_identificacion
+JOIN evento e ON e.numero_identificacion = estudiante_evento.evento
+WHERE e.numero_identificacion =$P{evento}  
+UNION ALL
+SELECT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, e.nombre AS evento
+FROM estudiante
+JOIN estudiante_evento ON estudiante_evento.estudiante = estudiante.numero_identificacion
+JOIN evento e ON e.numero_identificacion = estudiante_evento.evento
+WHERE $P{evento}="" OR $P{evento} IS NULL
+) AS TODO]]>
 	</queryString>
 	<field name="numero_identificacion" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -57,33 +68,10 @@ ORDER BY estudiante.apellido]]>
 			</image>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="21">
-			<staticText>
-				<reportElement x="370" y="0" width="60" height="20" uuid="ad796897-6ddb-4cab-b1a0-5ad1537904fd">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[EVENTO:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="430" y="0" width="140" height="20" uuid="2dddab64-095a-431d-86e8-87206e6528b8">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{evento}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageHeader>
 	<columnHeader>
-		<band height="21" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="130" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c90f441c-d45b-42f9-aaef-3216419bc89b"/>
+				<reportElement mode="Opaque" x="0" y="0" width="94" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c90f441c-d45b-42f9-aaef-3216419bc89b"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
@@ -96,7 +84,7 @@ ORDER BY estudiante.apellido]]>
 				<text><![CDATA[Identificador]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="130" y="0" width="255" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e05fdba7-dfdb-4b61-9098-6270d7ca42a1">
+				<reportElement mode="Opaque" x="94" y="0" width="194" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e05fdba7-dfdb-4b61-9098-6270d7ca42a1">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -111,7 +99,7 @@ ORDER BY estudiante.apellido]]>
 				<text><![CDATA[Nombre usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="385" y="0" width="187" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="afb46f9a-202c-45c0-b251-21942df9d060">
+				<reportElement mode="Opaque" x="288" y="0" width="148" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="afb46f9a-202c-45c0-b251-21942df9d060">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -125,12 +113,27 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<text><![CDATA[correo]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="436" y="0" width="135" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e124ac40-4bfc-4192-8853-62d110616710">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#006699"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Evento]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="130" height="20" uuid="09a1d99a-7859-4e56-a237-49fd34724270">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="94" height="20" uuid="09a1d99a-7859-4e56-a237-49fd34724270">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>
@@ -144,8 +147,8 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_identificacion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="0" width="255" height="20" uuid="da64e0b5-33d1-4100-b7ec-792b1f127c6c"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="94" y="0" width="194" height="20" uuid="da64e0b5-33d1-4100-b7ec-792b1f127c6c"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
@@ -157,8 +160,8 @@ ORDER BY estudiante.apellido]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="385" y="0" width="185" height="20" uuid="21161c2a-386c-42d1-bb06-138e764194da"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="288" y="0" width="148" height="20" uuid="21161c2a-386c-42d1-bb06-138e764194da"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#000000"/>
@@ -169,6 +172,23 @@ ORDER BY estudiante.apellido]]>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="0" width="135" height="20" uuid="2dddab64-095a-431d-86e8-87206e6528b8">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{evento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

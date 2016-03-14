@@ -26,6 +26,8 @@ import javax.sql.DataSource;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 import org.springframework.core.io.ClassPathResource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -130,10 +132,13 @@ public class controladorGeneralReportes{
     						@RequestParam(value="event", required=false) String event,
     						@RequestParam(value="estrato", required=false) String estrato,
     						@RequestParam(value="etapa", required=false) String etapa,
+    						@RequestParam(value="procesop", required=false) String procesop,
+    						@RequestParam(value="procesoe", required=false) String procesoe,
     						HttpServletRequest request,
     						HttpServletResponse response, Model modelo) throws IOException {
 							ClassPathResource jasperpdf= new ClassPathResource("jasper/");
-		String nombreR = "";					
+		String nombreR = "";	
+		String query=null;
 		if(reporte.equals("1")){
 			nombreR = "reporteGeneralUsuarios";
 		}if(reporte.equals("2"))
@@ -154,16 +159,21 @@ public class controladorGeneralReportes{
 			nombreR="reporteEtapaPrograma";
 			}
 		if(reporte.equals("7")){
-			nombreR="reporteProceso";
+			nombreR="repoteProceso";
 			}
+		
     	try{
     		Map<String, Object> parameters = new HashMap<String, Object>();
     		  parameters.put("programa",pro);
     		  parameters.put("evento",event);
     		  parameters.put("estrato",estrato);
+    		  parameters.put("etapa",etapa);
+    		  parameters.put("procesop",procesop);
+    		  parameters.put("procesoe",procesoe);
 		      parameters.put("imagenucc", "Imagenes/ucc.png");
 		      parameters.put("imagenlinea", "Imagenes/linea.png");
 		      parameters.put("cuadros", "Imagenes/cuadros.png");
+		     
 		      ClassPathResource jasperXML= new ClassPathResource("jasper/"+nombreR+".jrxml");
 		       System.out.println("ROLLBACK EJECUTADO"+jasperXML);
 		        JasperReport report= JasperCompileManager.compileReport(jasperXML.getInputStream());
