@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
     <script type="text/javascript" src="/validacionEstudiante.js"></script>
+    <script type="text/javascript" src="/ayudasReporte.js"></script>
     
 	<style>
 		.button {
@@ -127,26 +128,26 @@
   										<tbody>
    									
    										<tr>	
-   										<td width="155" align="right"  style="cursor:pointer;font-size:12px;">Evento:&nbsp;
+   										<td width="155" align="right"  style="cursor:pointer;font-size:12px; color: #ff0000;"><b>* Evento:</b>&nbsp;
    										</td>
    										<td width="202">
-   											<a class="tooltipDemo" style="float: right;">
+   											<a class="tooltipDemo" data-toggle="tooltip" title="Seleccione el evento para generar el reporte." style="float: right;">
 												<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
 											</a>
 											<select name="event" style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
-												<option th:each="evento : ${evento}" th:value="${evento.numeroIdentificacion}" th:text="${evento.nombre}"> </option>
 												<option value="">todos</option>
+												<option th:each="evento : ${evento}" th:value="${evento.numeroIdentificacion}" th:text="${evento.nombre}"> </option>												
 											</select>
   										</td>
    										</tr>
    										
    										<tr>
-   										<td align="right" style="width:155px;cursor:pointer;font-size:12px;">Tipo Archivo: &nbsp;
+   										<td align="right" style="width:155px;cursor:pointer;font-size:12px; color: #ff0000;"><b>Tipo Archivo: </b>&nbsp;
    										</td>
    										
    										<td>
    											<a class="tooltipDemo" style="float: right;">
-											<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
+											<!-- <img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/> -->
 											</a>
    											<select style="width:155px;font-size:12px;" maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
 												<option value="1">PDF</option>
