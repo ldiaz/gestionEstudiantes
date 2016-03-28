@@ -1,3 +1,4 @@
+<!-- creado por Isabel Peña -->
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -52,40 +53,11 @@
   			right: 0;
 		}
 
-		a.tooltipDemo {
-			position: relative;
-    		display: inline;
-		}
-
-		a.tooltipDemo span:before {
-    		content: '';
-    		position: absolute;
-    		top: 30%;
-    		right: 100%;
-    		margin-top: -10px;
-    		width: 0;
-    		height: 0;
-    		border-right: 10px solid #ccc;
-    		border-top: 10px solid transparent;
-    		border-bottom: 10px solid transparent;
-		}
-
-		a.tooltipDemo span:after {
-    		content: '';
-    		position: absolute;
-    		top: 30%;
-    		right: 100%;
-    		margin-top: -8px;
-    		width: 0;
-    		height: 0;
-    		border-right: 8px solid #fdfdfd;
-    		border-top: 8px solid transparent;
-    		border-bottom: 8px solid transparent;
-		}
+	
 
 	</style>
 </head>
-
+<!-- Barra superior HOME -->
 <body th:fragment="content" style="margin:0px;; background-image: url(Imagenes/fondogris.jpg);background-color:#dddde2" bgcolor="#dddde2" onload="">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -131,9 +103,11 @@
    										<td width="155" align="right"  style="cursor:pointer ;font-size:12px; color: #ff0000;"><B>* Programa:</B>&nbsp;
    										</td>
    										<td width="202">
+   											<!-- Mensaje de informacion con javascript  -->
    											<a class="tooltipDemo" data-toggle="tooltip" title="Seleccione el programa para generar el reporte." style="float: right;">
 												<img align="right" src="Imagenes/btnAyuda.png" alt="Seleccione la opcion del programa."/>
 											</a>
+											<!-- Lista de programas que estan habiliatdos de la BD -->
 											<select name="pro" style="width:155px;font-size:12px; " maxlength="100"  onblur="this.style.backgroundColor=&#39;&#39;">
 												<option value="">todos</option>
 												<option th:each="programa : ${programa}" th:value="${programa.numeroIdentificacion}" th:text="${programa.nombre}"> </option>												
@@ -155,6 +129,7 @@
    										</td>
    										</tr>   										
    										<tr>
+   										<!-- campo que determina que reporte generar -->
 										<td align="right" style="cursor:pointer; font-size:5px; ">&nbsp;	
 										<input type="text" value="1" name="reporte" style="visibility:hidden"/>
 										</td>

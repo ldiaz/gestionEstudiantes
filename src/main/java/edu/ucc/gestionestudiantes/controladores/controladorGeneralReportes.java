@@ -126,6 +126,7 @@ public class controladorGeneralReportes{
 	}
 	
 	@RequestMapping(value="/download.do",method = RequestMethod.GET)
+	// Variables para generar reportes
     public String doDownload(@RequestParam(value="pro", required= false)String pro,
     						@RequestParam(value= "fomato", required= false)String formato,
     						@RequestParam(value="reporte", required=false) String reporte,
@@ -164,6 +165,7 @@ public class controladorGeneralReportes{
 		
     	try{
     		Map<String, Object> parameters = new HashMap<String, Object>();
+    		//parametros de reportes 
     		  parameters.put("programa",pro);
     		  parameters.put("evento",event);
     		  parameters.put("estrato",estrato);
@@ -188,7 +190,7 @@ public class controladorGeneralReportes{
     	
     	String filePath = nombreR+".pdf";
         ServletContext context = request.getServletContext();
-        String appPath = jasperpdf.getFilename();//context.getRealPath("");
+        String appPath = jasperpdf.getFilename();
         System.out.println("appPath = " + appPath);
         String fullPath = appPath + filePath;      
         File downloadFile = new File(fullPath);

@@ -40,6 +40,8 @@ public class Estudiante {
 	@NotEmpty(message = "Por favor digite su correo")
 	private String email;
 	
+	@NotEmpty(message = "Por favor seleccione su estrato")
+	private String estrato;
 	
 	@NotEmpty(message = "Por favor digite su contraseña")
 	private String Contrasena;
@@ -48,7 +50,7 @@ public class Estudiante {
 		
 	}
 
-	public Estudiante(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String Contrasena) {
+	public Estudiante(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String estrato,  String Contrasena) {
 		super();
 		this.numeroIdentificacion = numeroIdentificacion;
 		this.nombre = nombre;
@@ -56,6 +58,7 @@ public class Estudiante {
 		this.tipoDocumentoIdentificacion = tipoDocumentoIdentificacion;
 		this.fechaNacimiento = fechaNacimiento;
 		this.email = Email;
+		this.estrato= estrato;
 		this.Contrasena = Contrasena;
 	}
 
@@ -98,6 +101,14 @@ public class Estudiante {
 
 	public void setEmail(String emails) {
 		email = emails;
+	}
+	
+	public String getEstrato() {
+		return estrato;
+	}
+
+	public void setEstrato(String estratos) {
+		estrato = estratos;
 	}
 
 	public String getContrasena() {
