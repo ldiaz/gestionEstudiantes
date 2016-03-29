@@ -131,7 +131,7 @@ public class controladorGeneralReportes{
     						@RequestParam(value= "fomato", required= false)String formato,
     						@RequestParam(value="reporte", required=false) String reporte,
     						@RequestParam(value="event", required=false) String event,
-    						@RequestParam(value="estrato", required=false) String estrato,
+    						@RequestParam(value="status", required=false) String status,
     						@RequestParam(value="etapa", required=false) String etapa,
     						@RequestParam(value="procesop", required=false) String procesop,
     						@RequestParam(value="procesoe", required=false) String procesoe,
@@ -168,7 +168,8 @@ public class controladorGeneralReportes{
     		//parametros de reportes 
     		  parameters.put("programa",pro);
     		  parameters.put("evento",event);
-    		  parameters.put("estrato",estrato);
+    		  parameters.put("estrato",status);
+    		  System.out.println("ROLLBACK EJECUTADO"+status);
     		  parameters.put("etapa",etapa);
     		  parameters.put("procesop",procesop);
     		  parameters.put("procesoe",procesoe);
@@ -177,7 +178,7 @@ public class controladorGeneralReportes{
 		      parameters.put("cuadros", "Imagenes/cuadros.png");
 		     
 		      ClassPathResource jasperXML= new ClassPathResource("jasper/"+nombreR+".jrxml");
-		       System.out.println("ROLLBACK EJECUTADO"+jasperXML);
+		     
 		        JasperReport report= JasperCompileManager.compileReport(jasperXML.getInputStream());
 		        JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource.getConnection());
 		        System.out.println("ROLLBACK EJECUTADO");

@@ -111,6 +111,7 @@ public class Estudiante {
 		estrato = estratos;
 	}
 
+	
 	public String getContrasena() {
 		return Contrasena;
 	}
