@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.SystemException;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -117,6 +119,30 @@ public class ControladorPrograma {
 	
 	@RequestMapping(value="programas/{idPrograma}/inscribir", method=RequestMethod.GET)
 	public String inscribirPrograma(final HttpServletRequest request, @PathVariable Integer idPrograma, Principal principal, Model modelo){
+String currentUser = request.getUserPrincipal().getName();
+		
+		Usuario user = servUsuario.cargarUsuario(currentUser);
+		Programa prog = servPrograma.buscarPrograma(idPrograma);
+		
+		Estudiante e = servEstudiante.buscarPorCorreo(user.getUsername());
+		
+		if (validaInscripcion(prog, e)){
+			return "YaInscrito";		
+		}else{			
+			System.out.println("idPrograma= "+ idPrograma);
+			System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
+			
+			EstudiantePrograma EP = new EstudiantePrograma(prog, e, false);
+			servInsPrograma.crearEstudiantePrograma(EP);
+							
+			modelo.addAttribute("estudianteprograma", EP);
+			
+			return "ConfirmacionInscrito";
+		}
+	}
+	
+	@RequestMapping(value="programas/{idPrograma}/homologa", method=RequestMethod.GET)
+	public String homologaPrograma(final HttpServletRequest request, @PathVariable Integer idPrograma, Principal principal, Model modelo){
 		
 		String currentUser = request.getUserPrincipal().getName();
 		
@@ -125,15 +151,19 @@ public class ControladorPrograma {
 		
 		Estudiante e = servEstudiante.buscarPorCorreo(user.getUsername());
 		
-		System.out.println("idPrograma= "+ idPrograma);
-		System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
-		
-		EstudiantePrograma EP = new EstudiantePrograma(prog, e);
-		servInsPrograma.crearEstudiantePrograma(EP);
-						
-		modelo.addAttribute("estudianteprograma", EP);
-		
-		return "ConfirmacionInscrito";
+		if (validaInscripcion(prog, e)){
+			return "YaInscrito";		
+		}else{			
+			System.out.println("idPrograma= "+ idPrograma);
+			System.out.println("idEstudiante= "+ e.getNumeroIdentificacion());
+			
+			EstudiantePrograma EP = new EstudiantePrograma(prog, e, true);
+			servInsPrograma.crearEstudiantePrograma(EP);
+							
+			modelo.addAttribute("estudianteprograma", EP);
+			
+			return "ConfirmacionInscrito";
+		}
 	}
 	
 	@RequestMapping(value="programas/{idPrograma}/actualizar", method=RequestMethod.POST)
@@ -151,6 +181,14 @@ public class ControladorPrograma {
 		modelo.addAttribute("programa", p);
 		
 		return "vistaPrograma";
+	}
+	
+	public boolean validaInscripcion(Programa programa, Estudiante estudiante){
+		if (servInsPrograma.estaInscrito(estudiante, programa))
+			return true;
+		else
+			return false;
+		
 	}
 	
 //	@RequestMapping(value="programas/{idEstudiantePrograma}/confirmar", method=RequestMethod.POST)

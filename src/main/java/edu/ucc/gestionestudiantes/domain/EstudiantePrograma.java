@@ -19,6 +19,8 @@ public class EstudiantePrograma {
 	@OneToOne
 	private Estudiante estudiante;
 	
+	private boolean homologa;
+	
 	
 	public int getId() {
 		return Id;
@@ -39,6 +41,14 @@ public class EstudiantePrograma {
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
 	}
+	public boolean isHomologa() {
+		return homologa;
+	}
+	public void setHomologa(boolean homologa) {
+		this.homologa = homologa;
+	}
+	
+	
 //	public int getIdEstudiante() {
 //		return IdEstudiante;
 //	}
@@ -56,9 +66,10 @@ public class EstudiantePrograma {
 		
 	}
 	
-	public EstudiantePrograma(Programa programa, Estudiante estudiante){
+	public EstudiantePrograma(Programa programa, Estudiante estudiante, boolean homologa){
 		this.programa = programa;
 		this.estudiante = estudiante;
+		this.homologa = homologa;
 	}
 	
 	
