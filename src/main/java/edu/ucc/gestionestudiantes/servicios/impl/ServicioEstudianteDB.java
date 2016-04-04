@@ -2,8 +2,15 @@ package edu.ucc.gestionestudiantes.servicios.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.repositorios.RepositorioEstudiante;
@@ -11,6 +18,9 @@ import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 
 @Service
 public class ServicioEstudianteDB implements ServicioEstudiante{
+	
+	@PersistenceContext
+    private EntityManager manager;
 	
 	@Autowired
 	private RepositorioEstudiante repoEstudiante;
@@ -81,5 +91,17 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 		
 		return e;
 	}
+
+	
+	
+	 @Override
+	  public List<Estudiante> listarEstudiantePrograma(Integer id) {
+		  List<Estudiante> estudiante = manager.createNamedQuery("findByTitleIs", Estudiante.class)
+				  .setParameter(1, id)
+                  .getResultList();
+              return estudiante;
+	  }
+
+	
 
 }

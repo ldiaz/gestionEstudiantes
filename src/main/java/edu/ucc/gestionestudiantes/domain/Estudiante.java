@@ -2,6 +2,7 @@ package edu.ucc.gestionestudiantes.domain;
 
 import java.util.Date;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,8 +14,21 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
 
 @Entity
+@NamedNativeQuery(name = "findByTitleIs",
+query="SELECT estudiante.numero_identificacion, "
+		+ "estudiante.tipo_documento_identificacion, estudiante.nombre, "
+		+ "estudiante.apellido, estudiante.fecha_nacimiento, estudiante.email, "
+		+ "estudiante.contrasena, estudiante.estrato "+
+"FROM estudiante,estudiante_programa "+ 
+"WHERE  estudiante_programa.estudiante = estudiante.numero_identificacion "+
+"AND estudiante_programa.programa=?",
+resultClass = Estudiante.class
+)
+@Table(name = "estudiante")
 public class Estudiante {
 	
 	@Id

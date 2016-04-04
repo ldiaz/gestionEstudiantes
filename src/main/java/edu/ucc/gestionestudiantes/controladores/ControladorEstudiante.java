@@ -24,6 +24,8 @@ public class ControladorEstudiante {
 	
 	@Autowired
 	private ServicioEstudiante servEstudiante;
+
+	
 	
 	@Autowired
 	private InterfazServicioUsuario servicioUsuario;
@@ -114,6 +116,18 @@ public class ControladorEstudiante {
 		modelo.addAttribute("estudiante", e);
 		
 		return "vistaEstudiante";
+	}
+	@RequestMapping(value="programas/{idPrograma}/estuprog", method=RequestMethod.GET)
+	public String editarPrograma(@PathVariable Integer idPrograma, Model modelo){
+		
+		List<Estudiante> listado = servEstudiante.listarEstudiantePrograma(idPrograma);
+		
+		modelo.addAttribute("estudiantes", listado);
+		
+		
+		return "listadoEstudiantePrograma";
+		
+		
 	}
 	
 }

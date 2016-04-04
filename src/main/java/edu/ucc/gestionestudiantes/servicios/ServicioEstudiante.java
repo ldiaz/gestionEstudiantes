@@ -2,6 +2,8 @@ package edu.ucc.gestionestudiantes.servicios;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 import edu.ucc.gestionestudiantes.domain.Estudiante;
 
 public interface ServicioEstudiante {
@@ -17,6 +19,11 @@ public interface ServicioEstudiante {
 	public List<Estudiante> listarEstudiantes(int pagina, int cantidadResultados);
 	
 	public Estudiante eliminarEstudiante(int idEstudiante) throws Exception;
+
+	@Query(nativeQuery=true)
+	public List<Estudiante> listarEstudiantePrograma(Integer id);
+
+	
 
 	
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	 th:include="layout/principal :: page">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body>
+
+<div th:fragment="content">
+
+	
+	
+	<h1 align="center">ESTUDIANTE POR PROGRAMA</h1>
+	
+	<table class="table">
+		<tr>
+			<th>Identificacion</th>
+			<th>Tipo Documento</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Fecha de Nacimiento</th>
+			<th>Correo</th>
+			
+		</tr>
+
+		
+		<tr th:each="estudiante : ${estudiantes}">
+			<td th:text="${estudiante.numeroIdentificacion}"></td>
+			<td th:text="${estudiante.tipoDocumentoIdentificacion}"></td>
+			<td th:text="${estudiante.nombre}"></td>
+			<td th:text="${estudiante.apellido}"></td>			
+			<td th:text="${estudiante.fechaNacimiento}"></td>
+			<td th:text="${estudiante.email}"></td>			
+			
+		</tr>
+		
+	</table>
+	
+	
+	</div>
+</body>
+</html>
