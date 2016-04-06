@@ -1,7 +1,10 @@
 package edu.ucc.gestionestudiantes.controladores;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +15,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.ucc.gestionestudiantes.domain.AuxiliarEtapa;
 import edu.ucc.gestionestudiantes.domain.Estudiante;
+import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
+import edu.ucc.gestionestudiantes.domain.Programa;
 import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 import org.springframework.validation.BindingResult;
+
 
 @Controller
 public class ControladorEstudiante {
@@ -119,11 +126,21 @@ public class ControladorEstudiante {
 	}
 	@RequestMapping(value="programas/{idPrograma}/estuprog", method=RequestMethod.GET)
 	public String editarPrograma(@PathVariable Integer idPrograma, Model modelo){
-		
 		List<Estudiante> listado = servEstudiante.listarEstudiantePrograma(idPrograma);
+		List<EstudiantePrograma> listEstProg = servEstudiante.listarEstudianteProgramaEtapa(idPrograma);
+		List<AuxiliarEtapa> listAux = new ArrayList<AuxiliarEtapa>();
 		
-		modelo.addAttribute("estudiantes", listado);
+		for (int i = 0; i<=listado.size()-1;i++) {
+			
+	        AuxiliarEtapa Aux = new AuxiliarEtapa(listado.get(i).getNumeroIdentificacion(),
+	        		listado.get(i).getNombre(), listado.get(i).getApellido(), listado.get(i).getTipoDocumentoIdentificacion(),
+	        		listado.get(i).getFechaNacimiento(), listado.get(i).getEmail(), listado.get(i).getEstrato(),
+	        		listado.get(i).getContrasena(), listEstProg.get(i).getEtapa());    
+			listAux.add(Aux);
 		
+		}
+		
+		modelo.addAttribute("AuxiliarEtapa", listAux);
 		
 		return "listadoEstudiantePrograma";
 		

@@ -2,24 +2,12 @@ package edu.ucc.gestionestudiantes.domain;
 
 import java.util.Date;
 
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 import javax.persistence.NamedNativeQuery;
-import javax.persistence.Table;
-import edu.ucc.gestionestudiantes.domain.AuxiliarEtapa;
 
-@Entity
-@NamedNativeQuery(name = "findByTitleIs",
+
+/*@NamedNativeQuery(name = "Prueba",
 query="SELECT estudiante.numero_identificacion, "
 		+ "estudiante.tipo_documento_identificacion, estudiante.nombre, "
 		+ "estudiante.apellido, estudiante.fecha_nacimiento, estudiante.email, "
@@ -27,47 +15,36 @@ query="SELECT estudiante.numero_identificacion, "
 		+ "estudiante_programa.etapa "+
 "FROM estudiante,estudiante_programa "+ 
 "WHERE  estudiante_programa.estudiante = estudiante.numero_identificacion "+
-"AND estudiante_programa.programa=? "+
-"ORDER BY estudiante.numero_identificacion",
-resultClass = Estudiante.class
-)
-@Table(name = "estudiante")
-public class Estudiante {
-	//AuxiliarEtapa ep;
-	@Id
-    @NotNull(message = "Por favor digite su numero de identificación")
+"AND estudiante_programa.programa=?",
+resultClass = AuxiliarEtapa.class
+)*/
+
+public class AuxiliarEtapa {
+	
+	
 	private int numeroIdentificacion;
 	
-	@NotEmpty(message = "Por favor digite su nombre")
 	private String nombre;
 	
-	@NotEmpty(message = "Por favor digite su apellido")
 	private String apellido;
 	
-	@NotEmpty(message = "Por favor digite su tipo de documento de identificación")
 	private String tipoDocumentoIdentificacion;
 	
-	@NotNull(message = "Por favor digite su fecha de nacimiento")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso = ISO.DATE)
 	private Date fechaNacimiento;
 	
-	@Column(unique=true, name="email")
-	@Email	
-	@NotEmpty(message = "Por favor digite su correo")
 	private String email;
 	
-	@NotEmpty(message = "Por favor seleccione su estrato")
 	private String estrato;
 	
-	@NotEmpty(message = "Por favor digite su contraseña")
 	private String Contrasena;
+	
+	private int Etapa;
 		
-	public Estudiante(){
+	public AuxiliarEtapa(){
 		
 	}
 
-	public Estudiante(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String estrato,  String Contrasena) {
+	public AuxiliarEtapa(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String estrato,  String Contrasena, int Etapa) {
 		super();
 		this.numeroIdentificacion = numeroIdentificacion;
 		this.nombre = nombre;
@@ -77,6 +54,7 @@ public class Estudiante {
 		this.email = Email;
 		this.estrato= estrato;
 		this.Contrasena = Contrasena;
+		this.Etapa = Etapa;
 	}
 
 	public String getNombre() {
@@ -136,9 +114,12 @@ public class Estudiante {
 	public void setContrasena(String contrasena) {
 		Contrasena = contrasena;
 	}
-	
-	
-	
-	
-	
+
+	public int getEtapa() {
+		return Etapa;
+	}
+
+	public void setEtapa(int etapa) {
+		Etapa = etapa;
+	}
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 
+import edu.ucc.gestionestudiantes.domain.AuxiliarEtapa;
 import edu.ucc.gestionestudiantes.domain.Estudiante;
+import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
 
 public interface ServicioEstudiante {
 	
@@ -22,6 +24,15 @@ public interface ServicioEstudiante {
 
 	@Query(nativeQuery=true)
 	public List<Estudiante> listarEstudiantePrograma(Integer id);
+	
+	@Query(nativeQuery=true)
+	public List<EstudiantePrograma> listarEstudianteProgramaEtapa(Integer idP);
+	
+//	@Query(nativeQuery=true)
+//	public List<AuxiliarEtapa> listarAuxiliarEtapa(Integer id);
+//	
+	/*@Query(nativeQuery=true)
+	public List<Object[]> listarEstudianteProgramaOb(Integer id);*/
 
 	
 

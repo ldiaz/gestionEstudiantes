@@ -10,9 +10,9 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
+import edu.ucc.gestionestudiantes.domain.AuxiliarEtapa;
 import edu.ucc.gestionestudiantes.domain.Estudiante;
+import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
 import edu.ucc.gestionestudiantes.repositorios.RepositorioEstudiante;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 
@@ -92,7 +92,7 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 		return e;
 	}
 
-	
+	//public List<Object[]> byIncidencialimit(int incidencia_id);
 	
 	 @Override
 	  public List<Estudiante> listarEstudiantePrograma(Integer id) {
@@ -101,6 +101,31 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
                   .getResultList();
               return estudiante;
 	  }
+	 
+	 @Override
+	  public List<EstudiantePrograma> listarEstudianteProgramaEtapa(Integer idP) {
+		 
+		  List<EstudiantePrograma> estudiantePrograma = manager.createNamedQuery("findByTitleIsEP", EstudiantePrograma.class)
+				  .setParameter(1, idP)
+                 .getResultList();
+             return estudiantePrograma;
+	  }
+	 
+//	 @Override
+//	  public List<AuxiliarEtapa> listarAuxiliarEtapa(Integer id) {
+//		  List<AuxiliarEtapa> auxiliar = manager.createNamedQuery("findByTitleIs", AuxiliarEtapa.class)
+//				  .setParameter(1, id)
+//                 .getResultList();
+//             return auxiliar;
+//	  }
+	 
+	 /* @Override
+	  public List<Object[]> listarEstudianteProgramaOb(Integer id) {
+		  { List<Object[]> Object = manager.createNamedQuery("findByTitleIs")
+				  .setParameter(1, id)
+                 .getResultList();             
+		  		return Object;
+	  }*/
 
 	
 

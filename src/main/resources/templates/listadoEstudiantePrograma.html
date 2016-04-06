@@ -22,18 +22,20 @@
 			<th>Apellido</th>
 			<th>Fecha de Nacimiento</th>
 			<th>Correo</th>
+			<th>Etapa</th>
 			
 		</tr>
 
 		
-		<tr th:each="estudiante : ${estudiantes}">
-			<td th:text="${estudiante.numeroIdentificacion}"></td>
-			<td th:text="${estudiante.tipoDocumentoIdentificacion}"></td>
-			<td th:text="${estudiante.nombre}"></td>
-			<td th:text="${estudiante.apellido}"></td>			
-			<td th:text="${estudiante.fechaNacimiento}"></td>
-			<td th:text="${estudiante.email}"></td>			
-			
+		<tr th:each="AuxiliarEtapa : ${AuxiliarEtapa}">
+			<td th:text="${AuxiliarEtapa.numeroIdentificacion}"></td>
+			<td th:text="${AuxiliarEtapa.tipoDocumentoIdentificacion}"></td>
+			<td th:text="${AuxiliarEtapa.nombre}"></td>
+			<td th:text="${AuxiliarEtapa.apellido}"></td>			
+			<td th:text="${AuxiliarEtapa.fechaNacimiento}"></td>
+			<td th:text="${AuxiliarEtapa.email}"></td>			
+			<td th:text="${AuxiliarEtapa.etapa}"></td>
+			<td><button type="button" class="btn btn-default" >Siguiente</button></td>
 		</tr>
 		
 	</table>

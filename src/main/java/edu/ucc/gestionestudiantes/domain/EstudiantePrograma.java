@@ -4,9 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedNativeQuery(name = "findByTitleIsEP",
+query="SELECT estudiante_programa.id, "
+		+ "estudiante_programa.homologa, estudiante_programa.estudiante, "
+		+ "estudiante_programa.programa, estudiante_programa.etapa "+
+"FROM estudiante,estudiante_programa "+ 
+"WHERE estudiante_programa.programa=? "+
+"ORDER BY estudiante_programa.estudiante",
+resultClass = EstudiantePrograma.class
+)
 public class EstudiantePrograma {
 	
 	@Id	
@@ -21,7 +31,15 @@ public class EstudiantePrograma {
 	
 	private boolean homologa;
 	
+	private int etapa;
 	
+	
+	public int getEtapa() {
+		return etapa;
+	}
+	public void setEtapa(int etapa) {
+		this.etapa = etapa;
+	}
 	public int getId() {
 		return Id;
 	}	
@@ -70,6 +88,7 @@ public class EstudiantePrograma {
 		this.programa = programa;
 		this.estudiante = estudiante;
 		this.homologa = homologa;
+		this.etapa = 1;
 	}
 	
 	

@@ -7,9 +7,17 @@
  
     <named-query name="findByTitleIs">
         <query>SELECT estudiante.numero_identificacion, estudiante.tipo_documento_identificacion, estudiante.nombre, estudiante.apellido, estudiante.fecha_nacimiento, 
-        estudiante.email, estudiante.contrasena 
-FROM estudiante,estudiante_programa 
+        estudiante.email, estudiante.contrasena, estudiante_programa.etapa 
+FROM estudiante, estudiante_programa 
 WHERE  estudiante_programa.estudiante = estudiante.numero_identificacion
-AND estudiante_programa.programa=?</query>
+AND estudiante_programa.programa=? 
+ORDER BY estudiante.numero_identificacion</query>
+    </named-query>
+    
+    <named-query name="findByTitleIsEP">
+        <query>SELECT estudiante_programa.id, estudiante_programa.homologa, estudiante_programa.estudiante, estudiante_programa.programa, estudiante_programa.etapa
+FROM estudiante_programa 
+WHERE estudiante_programa.programa=?   
+ORDER BY estudiante_programa.estudiante</query>
     </named-query>
 </entity-mappings>
