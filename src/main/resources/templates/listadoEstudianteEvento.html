@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+	 th:include="layout/principal :: page">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+</head>
+<body>
+
+<div th:fragment="content">
+
+	
+	
+	<h1 align="center">ESTUDIANTE POR EVENTO</h1>
+	
+	
+	<table class="table">
+		<tr>
+			<th>Identificacion</th>
+			<th>Tipo Documento</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Fecha de Nacimiento</th>
+			<th>Correo</th>
+			<th>Etapa</th>
+			
+		</tr>
+
+		
+		<tr th:each="EventoEtapa : ${EventoEtapa}">
+			<td th:text="${EventoEtapa.numeroIdentificacion}"></td>
+			<td th:text="${EventoEtapa.tipoDocumentoIdentificacion}"></td>
+			<td th:text="${EventoEtapa.nombre}"></td>
+			<td th:text="${EventoEtapa.apellido}"></td>			
+			<td th:text="${EventoEtapa.fechaNacimiento}"></td>
+			<td th:text="${EventoEtapa.email}"></td>			
+			<td th:text="${EventoEtapa.etapa}"></td>
+			<td>				
+			   <div class="btn-group" role="group" aria-label="...">
+				  <a type="button" class="btn btn-danger" th:href="@{/events/{idEvento}/{idEstudiante}/{etapa}/etapas((idEvento=${EventoEtapa.idEvento}), (idEstudiante=${EventoEtapa.numeroIdentificacion}), (etapa=1))}">Nuevo</a>
+  				  <a type="button" class="btn btn-warning" th:href="@{/events/{idEvento}/{idEstudiante}/{etapa}/etapas((idEvento=${EventoEtapa.idEvento}), (idEstudiante=${EventoEtapa.numeroIdentificacion}), (etapa=2))}">Docs</a>
+  				  <a type="button" class="btn btn-info" th:href="@{/events/{idEvento}/{idEstudiante}/{etapa}/etapas((idEvento=${EventoEtapa.idEvento}), (idEstudiante=${EventoEtapa.numeroIdentificacion}), (etapa=3))}">Entrevista</a>
+  				  <a type="button" class="btn btn-primary" th:href="@{/events/{idEvento}/{idEstudiante}/{etapa}/etapas((idEvento=${EventoEtapa.idEvento}), (idEstudiante=${EventoEtapa.numeroIdentificacion}), (etapa=4))}">Recibo</a>
+  				  <a type="button" class="btn btn-success" th:href="@{/events/{idEvento}/{idEstudiante}/{etapa}/etapas((idEvento=${EventoEtapa.idEvento}), (idEstudiante=${EventoEtapa.numeroIdentificacion}), (etapa=5))}">Pago</a>
+				</div>					
+			</td>
+		</tr>
+		
+		
+	</table>
+	
+	
+	</div>
+</body>
+</html>

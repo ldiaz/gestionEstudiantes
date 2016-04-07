@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -17,8 +18,12 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import edu.ucc.gestionestudiantes.domain.AuxiliarEtapa;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.EntityResult;
+import javax.persistence.FieldResult;
 
-@Entity
+
+@NamedNativeQueries({
 @NamedNativeQuery(name = "findByTitleIs",
 query="SELECT estudiante.numero_identificacion, "
 		+ "estudiante.tipo_documento_identificacion, estudiante.nombre, "
@@ -30,9 +35,22 @@ query="SELECT estudiante.numero_identificacion, "
 "AND estudiante_programa.programa=? "+
 "ORDER BY estudiante.numero_identificacion",
 resultClass = Estudiante.class
+),
+@NamedNativeQuery(name = "queryevento",
+query="SELECT estudiante.numero_identificacion, "
+		+ "estudiante.tipo_documento_identificacion, estudiante.nombre, "
+		+ "estudiante.apellido, estudiante.fecha_nacimiento, estudiante.email, "
+		+ "estudiante.contrasena, estudiante.estrato, "
+		+ "estudiante_evento.etapa "+
+"FROM estudiante,estudiante_evento "+ 
+"WHERE  estudiante_evento.estudiante = estudiante.numero_identificacion "+
+"AND estudiante_evento.evento=? "+
+"ORDER BY estudiante.numero_identificacion",
+resultClass = Estudiante.class
 )
+})
 
-@Table(name = "estudiante")
+@Entity
 public class Estudiante {
 	//AuxiliarEtapa ep;
 	@Id

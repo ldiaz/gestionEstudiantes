@@ -65,6 +65,7 @@ public class ControladorUsuario {
 			return "Home";
 	}
 	
+	
 	@RequestMapping(value="Error", method=RequestMethod.GET)
 	public String ErrorLogin(Model modelo){
 			return "Error";

@@ -36,8 +36,13 @@
 			<td th:text="${evento.contacto}"></td>
 			<td th:text="${evento.habilitado}"></td>
 			
+			
 			<td>
 				<a class="btn btn-primary" th:href="@{/eventos/{idevento}/editar(idevento=${evento.numeroIdentificacion})}">Editar</a>
+<!-- 				<a class="btn btn-danger" th:href="@{/eventos/{idevento}/eliminar(idevento=${evento.numeroIdentificacion})}">Eliminar</a> -->
+			</td>
+			<td>
+				<a class="btn btn-primary" th:href="@{/eventos/{idevento}/listar(idevento=${evento.numeroIdentificacion})}">listado Estudiantes</a>
 <!-- 				<a class="btn btn-danger" th:href="@{/eventos/{idevento}/eliminar(idevento=${evento.numeroIdentificacion})}">Eliminar</a> -->
 			</td>
 		</tr>

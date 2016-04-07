@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 
 import edu.ucc.gestionestudiantes.domain.Estudiante;
+import edu.ucc.gestionestudiantes.domain.EstudianteEvento;
 import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
+import edu.ucc.gestionestudiantes.domain.Evento;
 import edu.ucc.gestionestudiantes.domain.Programa;
 
 public interface ServicioEstudiante {
@@ -30,6 +32,8 @@ public interface ServicioEstudiante {
 	public List<EstudiantePrograma> listarEstudianteProgramaEtapa(Integer idP);
 	
 	public EstudiantePrograma actualizarEstudianteProg(Estudiante Est, Programa Prog, int Etapa) throws Exception;
+
+	
 	
 //	@Query(nativeQuery=true)
 //	public List<AuxiliarEtapa> listarAuxiliarEtapa(Integer id);
@@ -37,6 +41,7 @@ public interface ServicioEstudiante {
 	/*@Query(nativeQuery=true)
 	public List<Object[]> listarEstudianteProgramaOb(Integer id);*/
 
+	
 	
 
 	

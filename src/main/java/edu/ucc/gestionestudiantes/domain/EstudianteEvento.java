@@ -4,7 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
+
+@NamedNativeQuery(name = "queryeventop",
+query="SELECT estudiante_evento.id, "
+		+ "estudiante_evento.estudiante, "
+		+ "estudiante_evento.evento, "
+		+ "estudiante_evento.etapa "+
+"FROM estudiante_evento "+ 
+"WHERE estudiante_evento.evento=? "+
+"ORDER BY estudiante_evento.estudiante",
+resultClass = EstudianteEvento.class
+)
 
 @Entity
 public class EstudianteEvento {
@@ -19,6 +31,7 @@ public class EstudianteEvento {
 	@OneToOne
 	private Estudiante estudiante;
 	
+	private int etapa;
 	
 	public int getId() {
 		return Id;
@@ -42,10 +55,17 @@ public class EstudianteEvento {
 	public EstudianteEvento(){
 		
 	}
+	public int getEtapa() {
+		return etapa;
+	}
+	public void setEtapa(int etapa) {
+		this.etapa = etapa;
+	}
 	
 	public EstudianteEvento(Evento evento, Estudiante estudiante){
 		this.evento = evento;
 		this.estudiante = estudiante;
+		this.etapa = 1;
 	}
 	
 	

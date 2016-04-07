@@ -98,6 +98,7 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 		return (List<Estudiante>) repoEstudiante.findAll();
 	}
 
+	
 	@Override
 	public Estudiante eliminarEstudiante(int idEstudiante) throws Exception {
 		Estudiante e = repoEstudiante.findOne(idEstudiante);
@@ -130,6 +131,8 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
                  .getResultList();
              return estudiantePrograma;
 	  }
+
+	
 	 
 //	 @Override
 //	  public List<AuxiliarEtapa> listarAuxiliarEtapa(Integer id) {
