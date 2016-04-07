@@ -31,6 +31,7 @@ query="SELECT estudiante.numero_identificacion, "
 "ORDER BY estudiante.numero_identificacion",
 resultClass = Estudiante.class
 )
+
 @Table(name = "estudiante")
 public class Estudiante {
 	//AuxiliarEtapa ep;

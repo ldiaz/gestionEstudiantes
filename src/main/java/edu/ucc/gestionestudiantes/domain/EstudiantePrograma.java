@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 
-@Entity
+
 @NamedNativeQuery(name = "findByTitleIsEP",
 query="SELECT estudiante_programa.id, "
 		+ "estudiante_programa.homologa, estudiante_programa.estudiante, "
@@ -17,6 +17,8 @@ query="SELECT estudiante_programa.id, "
 "ORDER BY estudiante_programa.estudiante",
 resultClass = EstudiantePrograma.class
 )
+
+@Entity
 public class EstudiantePrograma {
 	
 	@Id	
