@@ -10,10 +10,11 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ucc.gestionestudiantes.domain.AuxiliarEtapa;
 import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.domain.EstudiantePrograma;
+import edu.ucc.gestionestudiantes.domain.Programa;
 import edu.ucc.gestionestudiantes.repositorios.RepositorioEstudiante;
+import edu.ucc.gestionestudiantes.repositorios.RepositorioEstudiantePrograma;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
 
 @Service
@@ -24,6 +25,9 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 	
 	@Autowired
 	private RepositorioEstudiante repoEstudiante;
+	
+	@Autowired
+	private RepositorioEstudiantePrograma repoEstudianteProg;
 
 	@Override
 	public Estudiante buscarEstudiante(int idEstudiante) {
@@ -70,6 +74,22 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 		}	
 		
 		return e;
+	}
+	
+	@Override
+	public EstudiantePrograma actualizarEstudianteProg(Estudiante Est, Programa Prog, int Etapa) throws Exception {
+		EstudiantePrograma EP = repoEstudianteProg.findByEstudianteAndPrograma(Est, Prog);
+		
+		if (EP != null) {
+			EP.setEtapa(Etapa);			
+			
+			repoEstudianteProg.save(EP);
+		}else{
+			
+			throw new Exception("Imposible asignar etapa");
+		}	
+		
+		return EP;
 	}
 
 	@Override

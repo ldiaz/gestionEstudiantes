@@ -39,12 +39,22 @@ public class AuxiliarEtapa {
 	private String Contrasena;
 	
 	private int Etapa;
+	
+	private int idPrograma;
 		
+	public int getIdPrograma() {
+		return idPrograma;
+	}
+
+	public void setIdPrograma(int idPrograma) {
+		this.idPrograma = idPrograma;
+	}
+
 	public AuxiliarEtapa(){
 		
 	}
 
-	public AuxiliarEtapa(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String estrato,  String Contrasena, int Etapa) {
+	public AuxiliarEtapa(int numeroIdentificacion, String nombre, String apellido, String tipoDocumentoIdentificacion, Date fechaNacimiento, String Email, String estrato,  String Contrasena, int Etapa, int idPrograma) {
 		super();
 		this.numeroIdentificacion = numeroIdentificacion;
 		this.nombre = nombre;
@@ -55,6 +65,7 @@ public class AuxiliarEtapa {
 		this.estrato= estrato;
 		this.Contrasena = Contrasena;
 		this.Etapa = Etapa;
+		this.idPrograma= idPrograma;
 	}
 
 	public String getNombre() {

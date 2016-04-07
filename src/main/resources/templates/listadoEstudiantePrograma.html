@@ -14,6 +14,7 @@
 	
 	<h1 align="center">ESTUDIANTE POR PROGRAMA</h1>
 	
+	
 	<table class="table">
 		<tr>
 			<th>Identificacion</th>
@@ -35,7 +36,15 @@
 			<td th:text="${AuxiliarEtapa.fechaNacimiento}"></td>
 			<td th:text="${AuxiliarEtapa.email}"></td>			
 			<td th:text="${AuxiliarEtapa.etapa}"></td>
-			<td><button type="button" class="btn btn-default" >Siguiente</button></td>
+			<td>				
+			    <div class="btn-group" role="group" aria-label="...">
+				  <a type="button" class="btn btn-danger" th:href="@{/programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas((idPrograma=${AuxiliarEtapa.idPrograma}), (idEstudiante=${AuxiliarEtapa.numeroIdentificacion}), (etapa=1))}">Nuevo</a>
+  				  <a type="button" class="btn btn-warning" th:href="@{/programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas((idPrograma=${AuxiliarEtapa.idPrograma}), (idEstudiante=${AuxiliarEtapa.numeroIdentificacion}), (etapa=2))}">Docs</a>
+  				  <a type="button" class="btn btn-info" th:href="@{/programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas((idPrograma=${AuxiliarEtapa.idPrograma}), (idEstudiante=${AuxiliarEtapa.numeroIdentificacion}), (etapa=3))}">Entrevista</a>
+  				  <a type="button" class="btn btn-primary" th:href="@{/programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas((idPrograma=${AuxiliarEtapa.idPrograma}), (idEstudiante=${AuxiliarEtapa.numeroIdentificacion}), (etapa=4))}">Recibo</a>
+  				  <a type="button" class="btn btn-success" th:href="@{/programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas((idPrograma=${AuxiliarEtapa.idPrograma}), (idEstudiante=${AuxiliarEtapa.numeroIdentificacion}), (etapa=5))}">Pago</a>
+				</div>			
+			</td>
 		</tr>
 		
 	</table>

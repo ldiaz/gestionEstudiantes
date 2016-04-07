@@ -1,5 +1,6 @@
 package edu.ucc.gestionestudiantes.controladores;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 import edu.ucc.gestionestudiantes.seguridad.service.InterfazServicioUsuario;
 import edu.ucc.gestionestudiantes.servicios.ServicioEstudiante;
+import edu.ucc.gestionestudiantes.servicios.ServicioPrograma;
 import org.springframework.validation.BindingResult;
 
 
@@ -31,8 +33,9 @@ public class ControladorEstudiante {
 	
 	@Autowired
 	private ServicioEstudiante servEstudiante;
-
 	
+	@Autowired
+	private ServicioPrograma servPrograma;
 	
 	@Autowired
 	private InterfazServicioUsuario servicioUsuario;
@@ -135,7 +138,7 @@ public class ControladorEstudiante {
 	        AuxiliarEtapa Aux = new AuxiliarEtapa(listado.get(i).getNumeroIdentificacion(),
 	        		listado.get(i).getNombre(), listado.get(i).getApellido(), listado.get(i).getTipoDocumentoIdentificacion(),
 	        		listado.get(i).getFechaNacimiento(), listado.get(i).getEmail(), listado.get(i).getEstrato(),
-	        		listado.get(i).getContrasena(), listEstProg.get(i).getEtapa());    
+	        		listado.get(i).getContrasena(), listEstProg.get(i).getEtapa(), listEstProg.get(i).getPrograma().getNumeroIdentificacion());    
 			listAux.add(Aux);
 		
 		}
@@ -145,6 +148,21 @@ public class ControladorEstudiante {
 		return "listadoEstudiantePrograma";
 		
 		
+	}
+	
+	@RequestMapping(value="programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas", method=RequestMethod.GET)
+	public String Etapa(@PathVariable Integer idPrograma, @PathVariable Integer idEstudiante, @PathVariable Integer etapa, Principal principal, Model modelo){
+		Estudiante Est= servEstudiante.buscarEstudiante(idEstudiante);
+		Programa Prog = servPrograma.buscarPrograma(idPrograma);
+		
+		try {
+			servEstudiante.actualizarEstudianteProg(Est, Prog, etapa);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "EtapaActualizada";
 	}
 	
 }

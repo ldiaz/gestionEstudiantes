@@ -11,4 +11,5 @@ public interface ServicioInscripcionPrograma {
 	void EliminarEstudiantePrograma(EstudiantePrograma nuevoEstudiantePrograma);
 	
 	boolean estaInscrito(Estudiante e, Programa p);
+	
 }

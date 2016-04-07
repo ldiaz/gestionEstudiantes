@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 query="SELECT estudiante_programa.id, "
 		+ "estudiante_programa.homologa, estudiante_programa.estudiante, "
 		+ "estudiante_programa.programa, estudiante_programa.etapa "+
-"FROM estudiante,estudiante_programa "+ 
+"FROM estudiante_programa "+ 
 "WHERE estudiante_programa.programa=? "+
 "ORDER BY estudiante_programa.estudiante",
 resultClass = EstudiantePrograma.class
