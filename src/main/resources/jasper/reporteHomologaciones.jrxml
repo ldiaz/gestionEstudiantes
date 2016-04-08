@@ -18,13 +18,13 @@ SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " "
 FROM estudiante
 JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
 JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
-WHERE programa.numero_identificacion =$P{programa} AND $P{programa} IS NOT NULL
-UNION ALL
+WHERE programa.numero_identificacion =$P{programa} AND $P{programa} IS NOT NULL AND estudiante_programa.homologa=1
+UNION ALL 
 SELECT DISTINCT estudiante.numero_identificacion, concat( estudiante.nombre, " ", estudiante.apellido ) AS nombre, estudiante.email, programa.nombre AS programa
 FROM estudiante
 JOIN estudiante_programa ON estudiante_programa.estudiante = estudiante.numero_identificacion
 JOIN programa ON programa.numero_identificacion = estudiante_programa.programa
-WHERE $P{programa}=" " or $P{programa} is null
+WHERE ($P{programa}=" " or $P{programa} is null) AND estudiante_programa.homologa=1
 ) AS TODO]]>
 	</queryString>
 	<field name="numero_identificacion" class="java.lang.Integer">
