@@ -45,7 +45,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/Home").fullyAuthenticated();
         http.authorizeRequests().antMatchers("/programasInscripcion").fullyAuthenticated();
         http.authorizeRequests().antMatchers("/eventosInscripcion").fullyAuthenticated();
-
+        http.authorizeRequests().antMatchers("programasest/{idPrograma}/{idEstudiante}/{etapa}/etapas").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("events/{idEvento}/{idEstudiante}/{etapa}/etapas").hasAuthority("Admin");
+        http.authorizeRequests().antMatchers("/eventos/{idEvento}/inscribir").fullyAuthenticated();
+        
+        
         
         http.formLogin()
                 .defaultSuccessUrl("/Home")
