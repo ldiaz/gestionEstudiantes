@@ -116,8 +116,10 @@ public class ControladorEstudiante {
 	public String eliminarEstudiante(@PathVariable Integer idEstudiante, Model modelo){
 		
 		Estudiante e = null;
+		Usuario u = null;
 		try {
 			e = servEstudiante.eliminarEstudiante(idEstudiante);
+			u = servicioUsuario.eliminarUsuario(e.getEmail());
 		} catch (Exception e1) {
 			modelo.addAttribute("error", e1.getMessage());
 			e = new Estudiante();

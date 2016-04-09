@@ -19,7 +19,7 @@
 	      return false;
 	    }
 	  
-	    re = /^\w+$/;
+	    re="/^\w+$/";
 	    if(!re.test(formularioEstudiante.nombre.value)) {
 	      alert("Error: El nombre de usuario solo debe contener letras!");
 	      formularioEstudiante.nombre.focus();

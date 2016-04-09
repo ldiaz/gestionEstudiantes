@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.ucc.gestionestudiantes.domain.Estudiante;
 import edu.ucc.gestionestudiantes.seguridad.modelo.RolUsuario;
 import edu.ucc.gestionestudiantes.seguridad.modelo.Usuario;
 import edu.ucc.gestionestudiantes.seguridad.repositorio.RepositorioRolUsuario;
@@ -75,6 +76,20 @@ public class ServicioUsuario implements UserDetailsService, InterfazServicioUsua
 	public Usuario cargarUsuario(String userName) {
 		Usuario user = userRepository.findByUsername(userName);
 		return user;
+	}
+	
+	public Usuario eliminarUsuario(String userName) throws Exception{
+		Usuario u = userRepository.findByUsername(userName);
+		
+		if (u != null) {
+			rolRepository.delete(u.getRoles());
+			userRepository.delete(u);
+		}else{
+			
+			throw new Exception("Usuario "+userName+" no se encuentra en el sistema");
+		}	
+		
+		return u;
 	}
 	
 	
