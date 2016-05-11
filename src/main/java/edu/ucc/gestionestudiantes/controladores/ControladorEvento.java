@@ -188,7 +188,9 @@ public class ControladorEvento {
 			servEvento.actualizarEstudianteEven(Est, even, etapa);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			return "ErrorEtapaEvento";
 		}
 		
 		return "EtapaEventoActualizada";

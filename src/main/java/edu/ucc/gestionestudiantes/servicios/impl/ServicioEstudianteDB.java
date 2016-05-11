@@ -81,9 +81,14 @@ public class ServicioEstudianteDB implements ServicioEstudiante{
 		EstudiantePrograma EP = repoEstudianteProg.findByEstudianteAndPrograma(Est, Prog);
 		
 		if (EP != null) {
-			EP.setEtapa(Etapa);			
-			
-			repoEstudianteProg.save(EP);
+			if ((Etapa > EP.getEtapa()+1) || (Etapa < EP.getEtapa()-1)){
+				throw new Exception("Imposible asignar etapa");
+			}
+			else
+			{
+				EP.setEtapa(Etapa);
+				repoEstudianteProg.save(EP);
+			}
 		}else{
 			
 			throw new Exception("Imposible asignar etapa");

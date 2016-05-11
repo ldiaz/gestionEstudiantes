@@ -115,11 +115,16 @@ public class ServicioEventoDB implements ServicioEvento {
 	public EstudianteEvento actualizarEstudianteEven(Estudiante est, Evento even, int etapa) throws Exception {
    EstudianteEvento EE = repoEstudianteEven.findByEstudianteAndEvento(est, even);
   
-	System.out.println("21212121"+EE);
+	
 		if (EE != null) {
-			EE.setEtapa(etapa);			
-			
-			repoEstudianteEven.save(EE);
+			if ((etapa > EE.getEtapa()+1) || (etapa < EE.getEtapa()-1)){
+				throw new Exception("Imposible asignar etapa");
+			}
+			else
+			{
+				EE.setEtapa(etapa);
+				repoEstudianteEven.save(EE);
+			}
 		}else{
 			
 			throw new Exception("No es posible asignar etapa");
